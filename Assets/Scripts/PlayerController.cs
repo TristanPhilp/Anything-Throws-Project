@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float sensitivity;
     public float moveSpeed;
 
+
+    InputAction lookAction;
     InputAction moveAction;
     InputAction interactAction;
 
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
         //maxLook = 90;
         //minLook = -90;
 
-
+        lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
         pointer = Pointer.current;
@@ -38,20 +40,20 @@ public class PlayerController : MonoBehaviour
 
         //locks the cursor to the center of the screen and hides it
         //Why Unity hasn't made this the default, I don't know
-        Cursor.lockState = CursorLockMode.Locked;
+        
     }
     //poopfart
     // Update is called once per frame
     void Update()
     {
         //Takes the horizontal movement of the current pointer device and rotates the entire player object
-        horizontalInput = pointer.delta.x.ReadValue();
+        horizontalInput = lookAction.ReadValue<Vector2>().x;
         Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.deltaTime, 0);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
 
         //Same thing, but for vertical
         //Tried getting the camera to limit vertical movement, but couldn't figure it out after 2 hours so I gave up.
-        verticalInput = -pointer.delta.y.ReadValue();
+        verticalInput = -lookAction.ReadValue<Vector2>().y;
         Vector3 deltaVert = new Vector3(verticalInput * sensitivity * Time.deltaTime, 0, 0);
         playerCam.transform.Rotate(deltaVert);
 
