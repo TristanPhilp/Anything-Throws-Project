@@ -22,9 +22,6 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody m_Rigidbody;
 
-    //trash variable for figuring out the camera raycast
-    Vector3 pos;
-
     //float maxLook;
     //float minLook;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,29 +32,30 @@ public class PlayerController : MonoBehaviour
         //maxLook = 90;
         //minLook = -90;
 
-        pos = new Vector3(200, 200, 0);
-
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
+        pointer = Pointer.current;
         m_Rigidbody = GetComponent<Rigidbody>();
 
-        throwableSeen = false;
-        
 
+        //locks the cursor to the center of the screen and hides it
+        //Why Unity hasn't made this the default, I don't know
+        
     }
+    //poopfart
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //Takes the horizontal movement of the current pointer device and rotates the entire player object
         horizontalInput = lookAction.ReadValue<Vector2>().x;
-        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.fixedDeltaTime, 0);
+        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.deltaTime, 0);
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
 
         //Same thing, but for vertical
         //Tried getting the camera to limit vertical movement, but couldn't figure it out after 2 hours so I gave up.
         verticalInput = -lookAction.ReadValue<Vector2>().y;
-        Vector3 deltaVert = new Vector3(verticalInput * sensitivity * Time.fixedDeltaTime, 0, 0);
+        Vector3 deltaVert = new Vector3(verticalInput * sensitivity * Time.deltaTime, 0, 0);
         playerCam.transform.Rotate(deltaVert);
 
         //Movement code. Jank af but I've been at this for 5 hours and no longer care.
