@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
         interactAction = InputSystem.actions.FindAction("Interact");
-        pointer = Pointer.current;
         m_Rigidbody = GetComponent<Rigidbody>();
 
 
@@ -45,18 +44,9 @@ public class PlayerController : MonoBehaviour
     }
     //poopfart
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //Takes the horizontal movement of the current pointer device and rotates the entire player object
-        horizontalInput = lookAction.ReadValue<Vector2>().x;
-        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.deltaTime, 0);
-        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
-
-        //Same thing, but for vertical
-        //Tried getting the camera to limit vertical movement, but couldn't figure it out after 2 hours so I gave up.
-        verticalInput = -lookAction.ReadValue<Vector2>().y;
-        Vector3 deltaVert = new Vector3(verticalInput * sensitivity * Time.deltaTime, 0, 0);
-        playerCam.transform.Rotate(deltaVert);
+        
 
         //Movement code. Jank af but I've been at this for 5 hours and no longer care.
         moveValue.x = moveAction.ReadValue<Vector2>().x;
@@ -72,6 +62,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Takes the horizontal movement of the current pointer device and rotates the entire player object
+        horizontalInput = lookAction.ReadValue<Vector2>().x;
+        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.deltaTime, 0);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+
+        //Same thing, but for vertical
+        //Tried getting the camera to limit vertical movement, but couldn't figure it out after 2 hours so I gave up.
+        verticalInput = -lookAction.ReadValue<Vector2>().y;
+        Vector3 deltaVert = new Vector3(verticalInput * sensitivity * Time.deltaTime, 0, 0);
+        playerCam.transform.Rotate(deltaVert);
+
         //This area for object highlighting
 
 
