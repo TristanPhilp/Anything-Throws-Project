@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public Camera playerCam;
     public float sensitivity;
     public float moveSpeed;
-
+    [SerializeField] bool cursorLock = true;
 
     InputAction lookAction;
     InputAction moveAction;
@@ -69,5 +69,39 @@ public class PlayerController : MonoBehaviour
 
     }
 
+<<<<<<< Updated upstream
 
+=======
+    void Update()
+    {
+        //This area for object highlighting
+        Cursor.lockState = CursorLockMode.Locked;
+        //Handles the checking for whether there's an object in front of 
+        RaycastHit hit;
+
+        Vector3 forward = playerCam.transform.TransformDirection(Vector3.forward) * interactDistance;
+        Ray ray = new Ray(playerCam.transform.position, forward);
+        Debug.DrawRay(playerCam.transform.position, forward, Color.red);
+        if (Physics.Raycast(ray, out hit, interactDistance))
+        {
+            seenObject = hit.collider.gameObject;
+            //Transform objectHit = hit.transform;
+            
+            if (hit.collider.gameObject.TryGetComponent<ThrowableClass>(out ThrowableClass throwable))
+            {
+                throwableSeen = true;
+                Debug.Log("Looking At Throwable");
+            }
+            else
+            {
+                Debug.Log("Looking At Something");
+                throwableSeen = false;
+            }
+        }
+        else
+        {
+            throwableSeen = false;
+        }
+    }
+>>>>>>> Stashed changes
 }
