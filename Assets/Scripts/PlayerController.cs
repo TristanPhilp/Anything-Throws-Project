@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         if (interactAction.IsPressed() && throwableSeen == true)
         {
             //OBJECT INTERACTION CODE HERE
-            seenObject.GetComponent<ThrowableClass>().Select();
+            seenObject.GetComponent<ThrowableClass>().ColorShift(Color.red);
         }
     }
 
@@ -84,22 +84,27 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(playerCam.transform.position, forward, Color.red);
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
-            seenObject = hit.collider.gameObject;
-            //Transform objectHit = hit.transform;
+            if (hit.collider.gameObject != seenObject)
+            {
+                seenObject = hit.collider.gameObject;
+                if (hit.collider.gameObject.TryGetComponent<ThrowableClass>(out ThrowableClass throwable))
+                {
+                    throwableSeen = true;
+                    Debug.Log("Looking At Throwable");
+                    seenObject.GetComponent<ThrowableClass>().ColorShift(Color.white);
+                }
+                else
+                {
+                    Debug.Log("Looking At Something");
+                    throwableSeen = false;
+                }
+            }
             
-            if (hit.collider.gameObject.TryGetComponent<ThrowableClass>(out ThrowableClass throwable))
-            {
-                throwableSeen = true;
-                Debug.Log("Looking At Throwable");
-            }
-            else
-            {
-                Debug.Log("Looking At Something");
-                throwableSeen = false;
-            }
+            
         }
         else
         {
+            seenObject = null;
             throwableSeen = false;
         }
     }

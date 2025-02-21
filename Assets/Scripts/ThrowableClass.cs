@@ -31,4 +31,9 @@ public class ThrowableClass : MonoBehaviour
         Debug.Log("Throwable Object Selected");
         rend.material.color = Color.red;
     }
+
+    public void ColorShift(Color color)
+    {
+        rend.material.color = color;
+    }
 }
