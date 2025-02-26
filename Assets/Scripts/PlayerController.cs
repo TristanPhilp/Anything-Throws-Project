@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public Camera playerCam;
     public float sensitivity;
     public float moveSpeed;
-
+    [SerializeField] bool cursorLock = true;
 
     public float interactDistance;
     bool throwableSeen;
@@ -75,8 +75,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //This area for object highlighting
-
-
+        Cursor.lockState = CursorLockMode.Locked;
         //Handles the checking for whether there's an object in front of 
         RaycastHit hit;
 
