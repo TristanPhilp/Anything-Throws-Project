@@ -56,6 +56,7 @@ public class ThrowableClass : MonoBehaviour
     {
         isHeld = true;
         m_Rigidbody.isKinematic = true;
+        m_Rigidbody.detectCollisions = false;
         transform.parent = playerCam.transform;
     }
 
@@ -63,6 +64,7 @@ public class ThrowableClass : MonoBehaviour
     {
         isHeld = false;
         m_Rigidbody.isKinematic = false;
+        m_Rigidbody.detectCollisions = true;
         transform.parent = null;
     }
 
