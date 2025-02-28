@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 825580917}
   - component: {fileID: 825580916}
   - component: {fileID: 825580915}
+  - component: {fileID: 825580921}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -366,6 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 879963275}
+  playerCam: {fileID: 0}
 --- !u!54 &825580916
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -482,6 +485,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &825580921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825580914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cafee2086d102ae4aba17d7411402399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 825580915}
+        m_TargetAssemblyTypeName: ThrowableClass, Assembly-CSharp
+        m_MethodName: Hover
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 825580915}
+        m_TargetAssemblyTypeName: ThrowableClass, Assembly-CSharp
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &833877816
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +750,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &879963275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4956581541731983258, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+  m_PrefabInstance: {fileID: 3230609786864339806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &879963281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879963275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbe0c5b3e7105c488fe213f6f30b9e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
 --- !u!1 &2087365934
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +989,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4956581541731983258, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 879963281}
   m_SourcePrefab: {fileID: 100100000, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
