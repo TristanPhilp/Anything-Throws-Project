@@ -3,4 +3,4 @@
  
 Control Schemes:
   - WASD Keyboard movement with mouse-following camera, Left-Click or F to interact with object 
-  - Controller Scheme is currently in development
+  - Controller movement with left joystick, Bottom button (typically A/X) to interact with object. Start button to pause. 
