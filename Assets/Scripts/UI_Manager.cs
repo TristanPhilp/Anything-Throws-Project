@@ -10,15 +10,14 @@ public class UI_Manager : MonoBehaviour
     void Start()
     {
         //locks cursor 
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked; Doesn't work. Why?
         pauseToggle = InputSystem.actions.FindAction("Pause");
+        Pause();
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-
         if (pauseToggle.WasPressedThisFrame())
         {
             if (Time.timeScale <= 0.5)
