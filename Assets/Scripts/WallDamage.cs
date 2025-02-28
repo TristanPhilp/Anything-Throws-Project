@@ -15,6 +15,9 @@ public class WallDamage : MonoBehaviour
         {
             if (wallHealth <= 0)
             {
+
+
+
                 Destroy(gameObject, wallDestructTime);
                 Debug.Log("GUP!");
                 wallBroke = true;
@@ -25,8 +28,11 @@ public class WallDamage : MonoBehaviour
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Poopfartius | " + other.gameObject);
-        Destroy(other.gameObject, objectBreakTime);
-        wallHealth = wallHealth - 1;
+        if (other.gameObject.name != "Player")
+        {
+            Destroy(other.gameObject, objectBreakTime);
+            wallHealth = wallHealth - 1;
+        }
     }
 
     
