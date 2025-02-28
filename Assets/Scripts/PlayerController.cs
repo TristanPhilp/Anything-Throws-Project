@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     Vector3 moveValue;
+    float x_rot;
 
     Rigidbody m_Rigidbody;
 
