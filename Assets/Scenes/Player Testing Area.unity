@@ -932,19 +932,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: moveSpeed
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: sensitivity
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
-      propertyPath: vertSensitivity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
-      propertyPath: horizSensitivity
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: interactDistance
