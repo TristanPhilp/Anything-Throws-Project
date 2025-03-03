@@ -317,7 +317,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 5606617070320357788}
-  sensitivity: 2
+  horizSensitivity: 10
+  vertSensitivity: 5
+  pInput: {fileID: 3418810226392586802}
   moveSpeed: 5
 --- !u!54 &4517079856399016479
 Rigidbody:

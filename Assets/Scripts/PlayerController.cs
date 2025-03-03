@@ -7,11 +7,13 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCam;
-    public float sensitivity;
-    public float moveSpeed;
+    [SerializeField]public float horizSensitivity;
+    [SerializeField]public float vertSensitivity;
+    [SerializeField]public PlayerInput playerInput;
 
+    public float moveSpeed;    
 
-    
+    private float controllerLookAdjust = 20.0f;
 
     InputAction lookAction;
     InputAction moveAction;
@@ -56,13 +58,18 @@ public class PlayerController : MonoBehaviour
 		horizontalInput = lookAction.ReadValue<Vector2>().x;
 		verticalInput = lookAction.ReadValue<Vector2>().y;
 
+        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse")){
+            horizontalInput *= controllerLookAdjust;
+            verticalInput *= controllerLookAdjust;
+        } //manually tweak lookspeed on controller.
+
 		//Body rotation code.
-		Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.deltaTime, 0);
+		Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * horizSensitivity * Time.deltaTime, 0);
 		m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
 		
 		//Concocting the view angles.
-		float viewX = horizontalInput * sensitivity * Time.deltaTime; 
-		float viewY = verticalInput * sensitivity * Time.deltaTime;
+		float viewX = horizontalInput * horizSensitivity * Time.deltaTime; 
+		float viewY = verticalInput * vertSensitivity * Time.deltaTime;
 
 		
 		x_rot -= viewY;
