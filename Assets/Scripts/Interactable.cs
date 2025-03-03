@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour
     }
 
     //These functions may not be needed, but oh well
+    //All these do is allow interaction to be implemented on any object without needing to tweak the player interact code.
     public void OnHover()
     {
         onHover.Invoke();

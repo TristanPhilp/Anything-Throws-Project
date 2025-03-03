@@ -7,9 +7,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
 public class ThrowableClass : MonoBehaviour
-{ 
+{
     public GameObject player;
-    public Camera playerCam;
+    public Joint guidePoint;
+    Collider playerCollider;
     Rigidbody m_Rigidbody;
     Collider m_Collider;
     Renderer rend;
@@ -18,7 +19,8 @@ public class ThrowableClass : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerCam = player.GetComponentInChildren<Camera>();
+        playerCollider = player.GetComponent<Collider>();
+        guidePoint = player.GetComponentInChildren<Camera>().GetComponentInChildren<Joint>();
         isHeld = false;
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Collider = GetComponent<Collider> ();
@@ -28,7 +30,6 @@ public class ThrowableClass : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
 
@@ -43,29 +44,36 @@ public class ThrowableClass : MonoBehaviour
         if (!isHeld)
         {
             Hold();
-            ColorShift(Color.red);
         }
         else
         {
             Drop();
-            ColorShift(Color.blue);
         }
     }
 
     void Hold()
     {
         isHeld = true;
-        m_Rigidbody.isKinematic = true;
-        transform.parent = playerCam.transform;
+        //m_Rigidbody.isKinematic = true;
+        guidePoint.connectedBody = m_Rigidbody;
+        m_Rigidbody.useGravity = false;
+        //m_Collider.excludeLayers = 1 << LayerMask.NameToLayer("Player");
+        gameObject.layer = LayerMask.NameToLayer("HeldObject");
+        ColorShift(Color.red);
     }
 
     void Drop()
     {
         isHeld = false;
-        m_Rigidbody.isKinematic = false;
-        transform.parent = null;
+        //m_Rigidbody.isKinematic = false;
+        guidePoint.connectedBody = null;
+        m_Rigidbody.useGravity = true;
+        //m_Collider.excludeLayers = 0;
+        gameObject.layer = LayerMask.NameToLayer("Default");
+        ColorShift(Color.blue);
     }
 
+    //Interacts with the current material to set the material color to the input color.
     public void ColorShift(Color color)
     {
         rend.material.color = color;

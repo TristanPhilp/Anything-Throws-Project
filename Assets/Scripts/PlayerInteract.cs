@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-[RequireComponent(typeof(PlayerController))]
+//[RequireComponent(typeof(PlayerController))]
 public class PlayerInteract : MonoBehaviour
 {
     InputAction interactAction;
-    Camera playerCam;
+    public GameObject guidePoint;
 
     public float interactDistance;
     GameObject seenObject;
@@ -14,7 +14,7 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         interactAction = InputSystem.actions.FindAction("Interact");
-        playerCam = GetComponent<PlayerController>().playerCam;
+        guidePoint.transform.position = new Vector3(0, 0, interactDistance);
     }
 
     // Update is called once per frame
@@ -31,9 +31,9 @@ public class PlayerInteract : MonoBehaviour
 
         RaycastHit hit;
 
-        Vector3 forward = playerCam.transform.TransformDirection(Vector3.forward) * interactDistance;
-        Ray ray = new Ray(playerCam.transform.position, forward);
-        Debug.DrawRay(playerCam.transform.position, forward, Color.red);
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * interactDistance;
+        Ray ray = new Ray(transform.position, forward);
+        Debug.DrawRay(transform.position, forward, Color.red);
         if (Physics.Raycast(ray, out hit, interactDistance))
         {
             if (hit.collider.gameObject != seenObject)
