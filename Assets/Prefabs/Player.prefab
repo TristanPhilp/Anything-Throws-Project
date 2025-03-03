@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5343894061859123499}
   - component: {fileID: 1254801705580415768}
-  - component: {fileID: 279529935872009142}
-  m_Layer: 0
-  m_Name: GameObject
+  - component: {fileID: 6050646977323445837}
+  m_Layer: 8
+  m_Name: Guide Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,25 +60,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!145 &279529935872009142
-SpringJoint:
+--- !u!138 &6050646977323445837
+FixedJoint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737631570961137988}
-  serializedVersion: 3
+  serializedVersion: 1
   m_ConnectedBody: {fileID: 0}
   m_ConnectedArticulationBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
-  m_Spring: 10
-  m_Damper: 0.2
-  m_MinDistance: 0
-  m_MaxDistance: 0
-  m_Tolerance: 0.025
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
   m_EnableCollision: 0
@@ -98,7 +89,7 @@ GameObject:
   - component: {fileID: 5669710078839143432}
   - component: {fileID: 4970379165269501558}
   - component: {fileID: 2885239458552398612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -236,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbe0c5b3e7105c488fe213f6f30b9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guidePoint: {fileID: 737631570961137988}
   interactDistance: 2
 --- !u!1 &4956581541731983258
 GameObject:
@@ -250,7 +242,7 @@ GameObject:
   - component: {fileID: 2392922118251396495}
   - component: {fileID: 4517079856399016479}
   - component: {fileID: 7920988971195808119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +311,7 @@ MonoBehaviour:
   playerCam: {fileID: 5606617070320357788}
   horizSensitivity: 10
   vertSensitivity: 5
-  pInput: {fileID: 3418810226392586802}
+  playerInput: {fileID: 3418810226392586802}
   moveSpeed: 5
 --- !u!54 &4517079856399016479
 Rigidbody:
@@ -329,7 +321,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4956581541731983258}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 3
   m_Drag: 0
   m_AngularDrag: 20
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -383,7 +375,7 @@ GameObject:
   - component: {fileID: 8557168568894276409}
   - component: {fileID: 6075049589748270635}
   - component: {fileID: 5382216120736048751}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
