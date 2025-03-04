@@ -1,10 +1,10 @@
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
-public class CatapultController : MonoBehaviour
+public class TrebuchetController : MonoBehaviour
 {
     [Header("Objects launch")]
-    public Rigidbody weight;
+    //public Rigidbody weight;
     public Rigidbody arm;
     //HingeJoint hingeJointToDestroy;
     public GameObject launchable;
@@ -24,19 +24,19 @@ public class CatapultController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isPlayerHere == true)
         {
-
-            weight.isKinematic = false;
-            arm.isKinematic = false;
+            arm.transform.rotation = new Quaternion();
+            //weight.isKinematic = false;
+            //arm.isKinematic = false;
 
         }
 
         if (Input.GetKeyUp(KeyCode.Space) && isPlayerHere == true)
         {
+            arm.MoveRotation(new Quaternion(0, 0, 0, 0));
+            // HingeJoint hingeJointToDestroy;
+            //hingeJointToDestroy = launchable.GetComponent<HingeJoint>();
+            //Destroy(hingeJointToDestroy);
 
-            HingeJoint hingeJointToDestroy;
-            hingeJointToDestroy = launchable.GetComponent<HingeJoint>();
-            Destroy(hingeJointToDestroy);
-        
         }
     }
 
@@ -54,15 +54,7 @@ public class CatapultController : MonoBehaviour
         {
             isPlayerHere = false;
 
-            weight.position = new Vector3(0, 4f, 1.75f);
-            weight.transform.Rotate(0, 0, 0);
-            arm.MovePosition(new Vector3(-3.731045f, 4.8f, 0));
-            arm.MoveRotation(new Quaternion(1, 0, 0, 1));
-            //arm.position = new Vector3(0, 4.449043f, 2.107876f);
-            //arm.transform.Rotate(-0.046f, 0.0f, 0.0f);
             
-            weight.isKinematic = true;
-            arm.isKinematic = true;
         }
     }
 }
