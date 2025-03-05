@@ -8,7 +8,11 @@ public class Interactable : MonoBehaviour
     [Header("Interactable Functions")] 
     public UnityEvent onHover;
     public UnityEvent onInteract;
+    public Rigidbody Throwable;
 
+    [Header("Interactable Variables")]
+    [SerializeField] private Vector3 setPosition;
+    public bool isThrowable = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +22,11 @@ public class Interactable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (isThrowable == true)
+        {
+            Throwable.position = setPosition;
+        }
     }
 
     //These functions may not be needed, but oh well
@@ -29,5 +38,25 @@ public class Interactable : MonoBehaviour
     public void OnInteract()
     {
         onInteract.Invoke();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.CompareTag("Throwable"))
+        {
+            isThrowable = true;
+            Debug.Log("Trick");
+        }
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Throwable"))
+        {
+            isThrowable = false;
+        }
+
     }
 }

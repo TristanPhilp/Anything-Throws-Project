@@ -3,48 +3,58 @@ using UnityEngine;
 
 public class TrebuchetController : MonoBehaviour
 {
-    [Header("Trebuchet Components")]
-    public GameObject arm;
-    public Quaternion primedPos;
-    public Quaternion restPos;
-    public bool atRest;
-
-
     [Header("Objects launch")]
+    //public Rigidbody weight;
+    public Rigidbody arm;
+    //HingeJoint hingeJointToDestroy;
     public GameObject launchable;
-    public GameObject loadArea;
-    public Collider loadCollider;
 
-
+    [Header("Player Properties")]
+    public bool isPlayerHere;
+    public GameObject PlayerObject;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        loadCollider = loadArea.GetComponent<Collider>();
-        primedPos = Quaternion.Euler(0, 0, -30);
-        restPos = Quaternion.Euler(0, 0, 90);
-        atRest = false;
+        
     }
 
-    //function for throwing
-    public void TryLaunch()
+    // Update is called once per frame
+    void Update()
     {
-        if (atRest == false)
+        if (Input.GetKeyDown(KeyCode.Space) && isPlayerHere == true)
         {
-            arm.transform.rotation = restPos;
+            arm.transform.rotation = new Quaternion();
+            //weight.isKinematic = false;
+            //arm.isKinematic = false;
 
-            //if there's a throwable in the zone, then add velocity to it and forget the throwable
-            if (launchable != null) 
-            {
-                launchable.GetComponent<Rigidbody>().linearVelocity = new Vector3(4, 6, 0);
-                launchable = null;
-            }
-            
-            atRest = true;
         }
-        else
+
+        if (Input.GetKeyUp(KeyCode.Space) && isPlayerHere == true)
         {
-            arm.transform.rotation = primedPos;
-            atRest = false;
+            arm.MoveRotation(new Quaternion(0, 0, 0, 0));
+            // HingeJoint hingeJointToDestroy;
+            //hingeJointToDestroy = launchable.GetComponent<HingeJoint>();
+            //Destroy(hingeJointToDestroy);
+
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerHere = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerHere = false;
+
+            
         }
     }
 }

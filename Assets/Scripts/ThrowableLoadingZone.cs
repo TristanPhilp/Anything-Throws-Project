@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class ThrowableLoadingZone : MonoBehaviour
 {
-    public GameObject throwable;
-    public GameObject launcher;
+    public Rigidbody Throwable;
     [SerializeField] private Vector3 setPosition;
     public bool isThrowable = false;
 
@@ -17,18 +16,19 @@ public class ThrowableLoadingZone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isThrowable == true)
+        {
+            Throwable.position = setPosition;
+        }
     }
 
-    //if something touches the loading zone, checks if throwable and if true makes it the current throwable.
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collided with something");
+
         if (other.CompareTag("Throwable"))
         {
-            Debug.Log("Throwable detected");
-            throwable = other.gameObject;
-            launcher.GetComponent<TrebuchetController>().launchable = throwable;
-
+            isThrowable = true;
+            Debug.Log("Trick");
         }
 
     }
@@ -37,7 +37,7 @@ public class ThrowableLoadingZone : MonoBehaviour
     {
         if (other.CompareTag("Throwable"))
         {
-            throwable = null;
+            isThrowable = false;
         }
 
     }
