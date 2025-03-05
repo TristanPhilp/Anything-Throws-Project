@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+[System.Obsolete ("Use ThrowableClass instead.")]
 public class ThrowableItem : MonoBehaviour
 {
     public Rigidbody Throwable;
