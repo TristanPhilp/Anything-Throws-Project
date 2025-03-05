@@ -1,24 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using System;
+
 
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCam;
-    public float sensitivity;
-    public float moveSpeed;
+    [SerializeField]public float horizSensitivity;
+    [SerializeField]public float vertSensitivity;
+    [SerializeField]public PlayerInput playerInput;
 
+    public float moveSpeed;    
 
-    public float interactDistance;
-    bool throwableSeen;
-    GameObject seenObject;
+    private float controllerLookAdjust = 20.0f;
 
     InputAction lookAction;
     InputAction moveAction;
-    InputAction interactAction;
     float horizontalInput;
     float verticalInput;
     Vector3 moveValue;
+    float x_rot;
 
     Rigidbody m_Rigidbody;
 
@@ -34,15 +36,9 @@ public class PlayerController : MonoBehaviour
 
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
-        interactAction = InputSystem.actions.FindAction("Interact");
         m_Rigidbody = GetComponent<Rigidbody>();
-
-
-        //locks the cursor to the center of the screen and hides it
-        //Why Unity hasn't made this the default, I don't know
         
     }
-    //poopfart
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -53,54 +49,34 @@ public class PlayerController : MonoBehaviour
         moveValue.z = moveAction.ReadValue<Vector2>().y;
         m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * moveSpeed * Time.fixedDeltaTime) + (transform.right * moveValue.x * moveSpeed * Time.fixedDeltaTime));
 
-        if (interactAction.IsPressed() && throwableSeen == true)
-        {
-            //OBJECT INTERACTION CODE HERE
-            seenObject.GetComponent<ThrowableClass>().Select();
-        }
+        
     }
 
-    void Update()
-    {
-        //Takes the horizontal movement of the current pointer device and rotates the entire player object
-        horizontalInput = lookAction.ReadValue<Vector2>().x;
-        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * sensitivity * Time.deltaTime, 0);
-        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+	void Update()
+	{
+		//Takes the horizontal movement of the current pointer device and rotates the entire player object
+		horizontalInput = lookAction.ReadValue<Vector2>().x;
+		verticalInput = lookAction.ReadValue<Vector2>().y;
 
-        //Same thing, but for vertical
-        //Tried getting the camera to limit vertical movement, but couldn't figure it out after 2 hours so I gave up.
-        verticalInput = -lookAction.ReadValue<Vector2>().y;
-        Vector3 deltaVert = new Vector3(verticalInput * sensitivity * Time.deltaTime, 0, 0);
-        playerCam.transform.Rotate(deltaVert);
+        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse")){
+            horizontalInput *= controllerLookAdjust;
+            verticalInput *= controllerLookAdjust;
+        } //manually tweak lookspeed on controller.
 
-        //This area for object highlighting
+		//Body rotation code.
+		Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * horizSensitivity * Time.deltaTime, 0);
+		m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+		
+		//Concocting the view angles.
+		float viewX = horizontalInput * horizSensitivity * Time.deltaTime; 
+		float viewY = verticalInput * vertSensitivity * Time.deltaTime;
+
+		
+		x_rot -= viewY;
+		x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
+
+		playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
 
 
-        //Handles the checking for whether there's an object in front of 
-        RaycastHit hit;
-
-        Vector3 forward = playerCam.transform.TransformDirection(Vector3.forward) * interactDistance;
-        Ray ray = new Ray(playerCam.transform.position, forward);
-        Debug.DrawRay(playerCam.transform.position, forward, Color.red);
-        if (Physics.Raycast(ray, out hit, interactDistance))
-        {
-            seenObject = hit.collider.gameObject;
-            //Transform objectHit = hit.transform;
-            
-            if (hit.collider.gameObject.TryGetComponent<ThrowableClass>(out ThrowableClass throwable))
-            {
-                throwableSeen = true;
-                Debug.Log("Looking At Throwable");
-            }
-            else
-            {
-                Debug.Log("Looking At Something");
-                throwableSeen = false;
-            }
-        }
-        else
-        {
-            throwableSeen = false;
-        }
-    }
+	}
 }
