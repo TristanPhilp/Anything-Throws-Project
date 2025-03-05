@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwable: {fileID: 0}
-  launcher: {fileID: 0}
+  launcher: {fileID: 1484814989}
   setPosition: {x: 0, y: 0, z: 0}
   isThrowable: 0
 --- !u!1 &1849050373
@@ -1574,6 +1574,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThrowableCube
       objectReference: {fileID: 0}
+    - target: {fileID: 8012186521100489437, guid: f3c455d328a980642b9da0aeb6cb4812, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012186521100489437, guid: f3c455d328a980642b9da0aeb6cb4812, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c30683e2416c7994f9371a8b1ace7a6e, type: 2}
+    - target: {fileID: 8012186521100489437, guid: f3c455d328a980642b9da0aeb6cb4812, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d0613a29b40586449a9547d27390966, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
