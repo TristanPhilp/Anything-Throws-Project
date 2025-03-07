@@ -864,7 +864,6 @@ GameObject:
   - component: {fileID: 1511390145}
   - component: {fileID: 1511390144}
   - component: {fileID: 1511390143}
-  - component: {fileID: 1511390142}
   m_Layer: 0
   m_Name: Lever
   m_TagString: Untagged
@@ -887,36 +886,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1484814990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1511390142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511390140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cafee2086d102ae4aba17d7411402399, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onHover:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1484814991}
-        m_TargetAssemblyTypeName: TrebuchetController, Assembly-CSharp
-        m_MethodName: TryLaunch
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &1511390143
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1586,7 +1555,8 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 8d0613a29b40586449a9547d27390966, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7026629111756228406, guid: f3c455d328a980642b9da0aeb6cb4812, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
