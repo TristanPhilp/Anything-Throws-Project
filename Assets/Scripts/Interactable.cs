@@ -7,6 +7,7 @@ public class Interactable : MonoBehaviour
 {
     [Header("Interactable Functions")] 
     public UnityEvent onHover;
+    public UnityEvent onInteract;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
