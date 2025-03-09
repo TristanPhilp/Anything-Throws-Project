@@ -1,18 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
-[RequireComponent(typeof(Interactable))]
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Collider))]
-public class ThrowableClass : MonoBehaviour
+public class ThrowableClass : Interactable
 {
     public GameObject player;
     public Joint guidePoint;
     Collider playerCollider;
     Rigidbody m_Rigidbody;
-    Collider m_Collider;
     Renderer rend;
     bool isHeld;
 
@@ -23,7 +18,6 @@ public class ThrowableClass : MonoBehaviour
         guidePoint = player.GetComponentInChildren<Camera>().GetComponentInChildren<Joint>();
         isHeld = false;
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Collider = GetComponent<Collider> ();
         rend = GetComponent<Renderer>();
     }
 
@@ -33,11 +27,11 @@ public class ThrowableClass : MonoBehaviour
     }
 
 
-    public void Hover()
+    public override void OnHover()
     {
         ColorShift(Color.white);
     }
-    public void Select()
+    public override void OnInteract()
     {
         //activate shader for now
         Debug.Log("Throwable Object Selected");
