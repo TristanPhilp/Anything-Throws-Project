@@ -39,7 +39,7 @@ public class PlayerInteract : MonoBehaviour
             if (hit.collider.gameObject != seenObject)
             {
                 seenObject = hit.collider.gameObject;
-                if (hit.collider.gameObject.TryGetComponent<Interactable>(out Interactable interact))
+                if (seenObject.TryGetComponent<Interactable>(out Interactable interact))
                 {
                     Debug.Log("Looking At Interactable");
                     interact.OnHover();
@@ -52,8 +52,13 @@ public class PlayerInteract : MonoBehaviour
 
 
         }
-        else
+        else if (seenObject != null)
         {
+            if (seenObject.TryGetComponent<Interactable>(out Interactable interact))
+            {
+                Debug.Log("Looked away from Interactable");
+                interact.OffHover();
+            }
             seenObject = null;
         }
     }

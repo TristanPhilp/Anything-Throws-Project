@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Collider))]
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     Collider m_Collider;
 
@@ -10,11 +10,6 @@ public class Interactable : MonoBehaviour
     void Start()
     {
         m_Collider = GetComponent<Collider>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     //These functions may not be needed, but oh well

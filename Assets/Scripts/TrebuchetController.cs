@@ -13,13 +13,11 @@ public class TrebuchetController : MonoBehaviour
     [Header("Objects launch")]
     public GameObject launchable;
     public GameObject loadArea;
-    public Collider loadCollider;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        loadCollider = loadArea.GetComponent<Collider>();
         primedPos = Quaternion.Euler(0, 0, -30);
         restPos = Quaternion.Euler(0, 0, 90);
         atRest = false;
