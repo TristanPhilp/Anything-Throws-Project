@@ -2,12 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
+
 public class ThrowableClass : Interactable
 {
+
     public GameObject player;
     public Joint guidePoint;
     Collider playerCollider;
     Rigidbody m_Rigidbody;
+
+    public Material[] materials;
+
     Renderer rend;
     bool isHeld;
 
@@ -19,6 +24,7 @@ public class ThrowableClass : Interactable
         isHeld = false;
         m_Rigidbody = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
+        materials = rend.materials;
     }
 
     // Update is called once per frame
@@ -76,6 +82,7 @@ public class ThrowableClass : Interactable
     //Interacts with the current material to set the material color to the input color.
     public void ColorShift(Color color)
     {
-        rend.material.color = color;
+        materials[0].color = color;
+        materials[1].color = color;
     }
 }

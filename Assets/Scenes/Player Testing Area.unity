@@ -1552,6 +1552,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 879963275}
+    - target: {fileID: 990431114327965561, guid: f3c455d328a980642b9da0aeb6cb4812, type: 3}
+      propertyPath: outline
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d0613a29b40586449a9547d27390966, type: 2}
     - target: {fileID: 4532964379814001390, guid: f3c455d328a980642b9da0aeb6cb4812, type: 3}
       propertyPath: m_Name
       value: ThrowableCube
