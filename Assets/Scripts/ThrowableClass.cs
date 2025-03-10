@@ -31,6 +31,12 @@ public class ThrowableClass : Interactable
     {
         ColorShift(Color.white);
     }
+
+    public override void OffHover()
+    {
+        ColorShift(Color.blue);
+    }
+
     public override void OnInteract()
     {
         //activate shader for now
