@@ -14,7 +14,7 @@ public class PlayerInteract : MonoBehaviour
     void Start()
     {
         interactAction = InputSystem.actions.FindAction("Interact");
-        guidePoint.transform.position = new Vector3(0, 0, interactDistance);
+        guidePoint.transform.localPosition = new Vector3(0, 0, interactDistance);
     }
 
     // Update is called once per frame
