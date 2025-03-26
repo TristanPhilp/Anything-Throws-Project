@@ -33,7 +33,7 @@ public class TrebuchetController : MonoBehaviour
             //if there's a throwable in the zone, then add velocity to it and forget the throwable
             if (launchable != null) 
             {
-                launchable.GetComponent<Rigidbody>().linearVelocity = new Vector3(4, 6, 0);
+                launchable.GetComponent<Rigidbody>().linearVelocity = new Vector3(-20, 15, 0);
                 launchable = null;
             }
             
