@@ -1892,6 +1892,10 @@ PrefabInstance:
       value: Guide Point
       objectReference: {fileID: 0}
     - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: sprintModifier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: interactDistance
       value: 2
       objectReference: {fileID: 0}

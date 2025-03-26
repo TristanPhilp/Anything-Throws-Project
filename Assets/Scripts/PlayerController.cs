@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]public float vertSensitivity;
     [SerializeField]public PlayerInput playerInput;
 
-    public float moveSpeed;    
-
+    public float moveSpeed;
+    public float sprintModifier;
     private float controllerLookAdjust = 20.0f;
+
+    float isSprint = 0;
 
     InputAction lookAction;
     InputAction moveAction;
@@ -61,7 +63,10 @@ public class PlayerController : MonoBehaviour
         float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
         float viewY = verticalInput * vertSensitivity * Time.deltaTime;
 
-
+        var sprintButton = playerInput.actions["sprint"]; //Pulls the SPRINT action from the player.
+        isSprint = Convert.ToInt32(sprintButton.IsPressed()); //Checks if the player is sprinting, and would return a 1 since it's true, perfect for usage in the formula.
+        
+        
         x_rot -= viewY;
         x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
 
@@ -77,7 +82,7 @@ public class PlayerController : MonoBehaviour
         //Movement code. Jank af but I've been at this for 5 hours and no longer care.
         moveValue.x = moveAction.ReadValue<Vector2>().x;
         moveValue.z = moveAction.ReadValue<Vector2>().y;
-        m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * moveSpeed * Time.fixedDeltaTime) + (transform.right * moveValue.x * moveSpeed * Time.fixedDeltaTime));
+        m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * (moveSpeed * ( 1 + sprintModifier * isSprint)) * Time.fixedDeltaTime) + (transform.right * moveValue.x * (moveSpeed * (1 + sprintModifier * isSprint)) * Time.fixedDeltaTime));
 
     }
 }
