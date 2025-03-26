@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: e79956bab9013534b918b4458c655bdf
+=======
+guid: 43c05acc793237746a4e108112414585
+>>>>>>> ead06e6de170475d1e9d66d22806d45baa58f249
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,7 +12,11 @@ ModelImporter:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
+<<<<<<< HEAD
     materialLocation: 0
+=======
+    materialLocation: 1
+>>>>>>> ead06e6de170475d1e9d66d22806d45baa58f249
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -65,7 +73,11 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
+<<<<<<< HEAD
     useFileScale: 0
+=======
+    useFileScale: 1
+>>>>>>> ead06e6de170475d1e9d66d22806d45baa58f249
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60

@@ -42,41 +42,42 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
 
-        //Movement code. Jank af but I've been at this for 5 hours and no longer care.
-        moveValue.x = moveAction.ReadValue<Vector2>().x;
-        moveValue.z = moveAction.ReadValue<Vector2>().y;
-        m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * moveSpeed * Time.fixedDeltaTime) + (transform.right * moveValue.x * moveSpeed * Time.fixedDeltaTime));
+        //Takes the horizontal movement of the current pointer device and rotates the entire player object
+        horizontalInput = lookAction.ReadValue<Vector2>().x;
+        verticalInput = lookAction.ReadValue<Vector2>().y;
+
+        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
+        {
+            horizontalInput *= controllerLookAdjust;
+            verticalInput *= controllerLookAdjust;
+        } //manually tweak lookspeed on controller.
+
+        //Body rotation code.
+        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * horizSensitivity * Time.deltaTime, 0);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+
+        //Concocting the view angles.
+        float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
+        float viewY = verticalInput * vertSensitivity * Time.deltaTime;
+
+
+        x_rot -= viewY;
+        x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
+
+        playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
+
+       
 
         
     }
 
 	void Update()
 	{
-		//Takes the horizontal movement of the current pointer device and rotates the entire player object
-		horizontalInput = lookAction.ReadValue<Vector2>().x;
-		verticalInput = lookAction.ReadValue<Vector2>().y;
+        //Movement code. Jank af but I've been at this for 5 hours and no longer care.
+        moveValue.x = moveAction.ReadValue<Vector2>().x;
+        moveValue.z = moveAction.ReadValue<Vector2>().y;
+        m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * moveSpeed * Time.fixedDeltaTime) + (transform.right * moveValue.x * moveSpeed * Time.fixedDeltaTime));
 
-        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse")){
-            horizontalInput *= controllerLookAdjust;
-            verticalInput *= controllerLookAdjust;
-        } //manually tweak lookspeed on controller.
-
-		//Body rotation code.
-		Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * horizSensitivity * Time.deltaTime, 0);
-		m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
-		
-		//Concocting the view angles.
-		float viewX = horizontalInput * horizSensitivity * Time.deltaTime; 
-		float viewY = verticalInput * vertSensitivity * Time.deltaTime;
-
-		
-		x_rot -= viewY;
-		x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
-
-		playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
-
-
-	}
+    }
 }
