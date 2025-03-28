@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
         m_Rigidbody = GetComponent<Rigidbody>();
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
     // Update is called once per frame
     void FixedUpdate()

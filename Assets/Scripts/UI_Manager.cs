@@ -9,10 +9,7 @@ public class UI_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //locks cursor 
-        //Cursor.lockState = CursorLockMode.Locked; Doesn't work. Why?
-        pauseToggle = InputSystem.actions.FindAction("Pause");
-        Pause();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
