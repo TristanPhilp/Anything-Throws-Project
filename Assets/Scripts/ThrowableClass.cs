@@ -13,6 +13,8 @@ public class ThrowableClass : Interactable
 
     public Material[] materials;
 
+    AudioSource audioPlayer;
+
     Renderer rend;
     bool isHeld;
 
@@ -25,6 +27,7 @@ public class ThrowableClass : Interactable
         m_Rigidbody = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
         materials = rend.materials;
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,6 +48,8 @@ public class ThrowableClass : Interactable
 
     public override void OnInteract()
     {
+        audioPlayer.clip = interactSound;
+        audioPlayer.Play();
         //activate shader for now
         Debug.Log("Throwable Object Selected");
         if (!isHeld)
@@ -84,5 +89,15 @@ public class ThrowableClass : Interactable
     {
         materials[0].color = color;
         materials[1].color = color;
+    }
+
+    public void OnLaunch()
+    {
+
+    }
+
+    public void OnWallHit()
+    {
+
     }
 }

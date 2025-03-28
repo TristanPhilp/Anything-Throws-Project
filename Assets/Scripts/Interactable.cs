@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public abstract class Interactable : MonoBehaviour
 {
+    public AudioClip interactSound;
     Collider m_Collider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
