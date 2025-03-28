@@ -9,6 +9,8 @@ public class UI_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //locks cursor 
+        pauseToggle = InputSystem.actions.FindAction("Pause");
         Cursor.lockState = CursorLockMode.Locked;
     }
 
