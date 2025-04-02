@@ -2,13 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
-
+[RequireComponent(typeof(AudioSource))]
 public class ThrowableClass : Interactable
 {
 
-    public GameObject player;
-    public Joint guidePoint;
-    Collider playerCollider;
     Rigidbody m_Rigidbody;
 
     public Material[] materials;
@@ -21,8 +18,6 @@ public class ThrowableClass : Interactable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerCollider = player.GetComponent<Collider>();
-        guidePoint = player.GetComponentInChildren<Camera>().GetComponentInChildren<Joint>();
         isHeld = false;
         m_Rigidbody = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
@@ -46,8 +41,9 @@ public class ThrowableClass : Interactable
         ColorShift(Color.blue);
     }
 
-    public override void OnInteract()
+    public override int OnInteract()
     {
+        m_Rigidbody.WakeUp();
         audioPlayer.clip = interactSound;
         audioPlayer.Play();
         //activate shader for now
@@ -60,15 +56,12 @@ public class ThrowableClass : Interactable
         {
             Drop();
         }
+        return 1;
     }
 
     void Hold()
     {
         isHeld = true;
-        //m_Rigidbody.isKinematic = true;
-        guidePoint.connectedBody = m_Rigidbody;
-        m_Rigidbody.useGravity = false;
-        //m_Collider.excludeLayers = 1 << LayerMask.NameToLayer("Player");
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
         ColorShift(Color.red);
     }
@@ -76,10 +69,6 @@ public class ThrowableClass : Interactable
     void Drop()
     {
         isHeld = false;
-        //m_Rigidbody.isKinematic = false;
-        guidePoint.connectedBody = null;
-        m_Rigidbody.useGravity = true;
-        //m_Collider.excludeLayers = 0;
         gameObject.layer = LayerMask.NameToLayer("Default");
         ColorShift(Color.blue);
     }
@@ -88,7 +77,6 @@ public class ThrowableClass : Interactable
     public void ColorShift(Color color)
     {
         materials[0].color = color;
-        materials[1].color = color;
     }
 
     public void OnLaunch()
