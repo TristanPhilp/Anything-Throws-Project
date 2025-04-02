@@ -7,6 +7,7 @@ public class PlayerInteract : MonoBehaviour
 {
     InputAction interactAction;
     public GameObject guidePoint;
+    Joint guideHinge;
 
     public float interactDistance;
     GameObject seenObject;
@@ -15,6 +16,7 @@ public class PlayerInteract : MonoBehaviour
     {
         interactAction = InputSystem.actions.FindAction("Interact");
         guidePoint.transform.localPosition = new Vector3(0, 0, interactDistance);
+        guideHinge = guidePoint.GetComponent<Joint>();
     }
 
     // Update is called once per frame
@@ -25,7 +27,14 @@ public class PlayerInteract : MonoBehaviour
             if (seenObject != null && seenObject.TryGetComponent<Interactable>(out Interactable interactable))
             {
                 //OBJECT INTERACTION CODE HERE
-                interactable.OnInteract();
+                if (interactable.OnInteract() == 1 && guideHinge.connectedBody == null)
+                {
+                    guideHinge.connectedBody = interactable.gameObject.GetComponent<Rigidbody>();
+                }
+                else if (interactable.OnInteract() == 1 && guideHinge.connectedBody != null)
+                {
+                    guideHinge.connectedBody = null;
+                }
             }
         }
 

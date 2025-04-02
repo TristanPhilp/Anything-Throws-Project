@@ -23,8 +23,9 @@ public abstract class Interactable : MonoBehaviour
     {
         Debug.Log("This item does not have a definition for OffHover");
     }
-    public virtual void OnInteract()
+    public virtual int OnInteract()
     {
         Debug.Log("This item does not have a definition for OnInteract");
+        return 0;
     }
 }
