@@ -15,10 +15,16 @@ public class ThrowableClass : Interactable
     Renderer rend;
     bool isHeld;
 
+    Transform outlineFind;
+
+    MeshRenderer outline;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isHeld = false;
+        outlineFind = transform.Find("Outline");
+        outline = outlineFind.GetComponent<MeshRenderer>();
         m_Rigidbody = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
         materials = rend.materials;
@@ -34,12 +40,12 @@ public class ThrowableClass : Interactable
 
     public override void OnHover()
     {
-        ColorShift(Color.white);
+        outline.enabled = true;
     }
 
     public override void OffHover()
     {
-        ColorShift(Color.blue);
+        outline.enabled = false;
     }
 
     public override int OnInteract()
