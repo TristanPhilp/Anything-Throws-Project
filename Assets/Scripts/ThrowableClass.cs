@@ -23,6 +23,7 @@ public class ThrowableClass : Interactable
         rend = GetComponent<Renderer>();
         materials = rend.materials;
         audioPlayer = GetComponent<AudioSource>();
+        m_Rigidbody.Sleep();
     }
 
     // Update is called once per frame
@@ -63,14 +64,14 @@ public class ThrowableClass : Interactable
     {
         isHeld = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
-        ColorShift(Color.red);
+        //ColorShift(Color.red);
     }
 
     void Drop()
     {
         isHeld = false;
         gameObject.layer = LayerMask.NameToLayer("Default");
-        ColorShift(Color.blue);
+        //ColorShift(Color.blue);
     }
 
     //Interacts with the current material to set the material color to the input color.
