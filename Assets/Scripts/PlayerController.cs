@@ -41,6 +41,33 @@ public class PlayerController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    void LateUpdate()
+    {
+
+
+        //Takes the horizontal movement of the current pointer device and rotates the entire player object
+        horizontalInput = lookAction.ReadValue<Vector2>().x;
+        verticalInput = lookAction.ReadValue<Vector2>().y;
+
+        Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
+
+        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
+        {
+            horizontalInput *= controllerLookAdjust;
+            verticalInput *= controllerLookAdjust;
+        } //manually tweak lookspeed on controller.
+
+        //Concocting the view angles.
+        float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
+        float viewY = verticalInput * vertSensitivity * Time.deltaTime;
+
+        x_rot -= viewY;
+        x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
+
+        playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -64,26 +91,5 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-
-        //Takes the horizontal movement of the current pointer device and rotates the entire player object
-        horizontalInput = lookAction.ReadValue<Vector2>().x;
-        verticalInput = lookAction.ReadValue<Vector2>().y;
-
-        Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
-
-        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
-        {
-            horizontalInput *= controllerLookAdjust;
-            verticalInput *= controllerLookAdjust;
-        } //manually tweak lookspeed on controller.
-
-        //Concocting the view angles.
-        float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
-        float viewY = verticalInput * vertSensitivity * Time.deltaTime;
-
-        x_rot -= viewY;
-        x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
-
-        playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
     }
 }
