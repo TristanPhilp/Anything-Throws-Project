@@ -2306,8 +2306,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.941658, y: 6.334496, z: 5.567115}
-  m_Center: {x: 0, y: 0.0000019073486, z: 0}
+  m_Size: {x: 4.875009, y: 6.9280357, z: 4.934439}
+  m_Center: {x: -0.037436537, y: -0.2967674, z: 0.05363388}
 --- !u!1001 &390205292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9213,7 +9213,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: House
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3451118302482216456, guid: 651d5740b123b8f40ab63c9aa1200569, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -10423,6 +10424,18 @@ PrefabInstance:
     - target: {fileID: 2886915725873657129, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517079856399016479, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517079856399016479, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517079856399016479, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4956581541731983258, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: m_Name

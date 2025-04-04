@@ -45,9 +45,31 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
+
+        
+
+        //Body rotation code.
+        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * horizSensitivity * Time.deltaTime, 0);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+
+        var sprintButton = playerInput.actions["sprint"]; //Pulls the SPRINT action from the player.
+        isSprint = Convert.ToInt32(sprintButton.IsPressed()); //Checks if the player is sprinting, and would return a 1 since it's true, perfect for usage in the formula.
+
+        //Movement code. Jank af but I've been at this for 5 hours and no longer care.
+        moveValue.x = moveAction.ReadValue<Vector2>().x;
+        moveValue.z = moveAction.ReadValue<Vector2>().y;
+        m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * (moveSpeed * (1 + sprintModifier * isSprint)) * Time.fixedDeltaTime) + (transform.right * moveValue.x * (moveSpeed * (1 + sprintModifier * isSprint)) * Time.fixedDeltaTime));
+
+    }
+
+	void Update()
+	{
+
         //Takes the horizontal movement of the current pointer device and rotates the entire player object
         horizontalInput = lookAction.ReadValue<Vector2>().x;
         verticalInput = lookAction.ReadValue<Vector2>().y;
+
+        Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
 
         if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
         {
@@ -55,34 +77,13 @@ public class PlayerController : MonoBehaviour
             verticalInput *= controllerLookAdjust;
         } //manually tweak lookspeed on controller.
 
-        //Body rotation code.
-        Quaternion deltaRotation = Quaternion.Euler(0, horizontalInput * horizSensitivity * Time.deltaTime, 0);
-        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
-
         //Concocting the view angles.
         float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
         float viewY = verticalInput * vertSensitivity * Time.deltaTime;
 
-        var sprintButton = playerInput.actions["sprint"]; //Pulls the SPRINT action from the player.
-        isSprint = Convert.ToInt32(sprintButton.IsPressed()); //Checks if the player is sprinting, and would return a 1 since it's true, perfect for usage in the formula.
-        
-        
         x_rot -= viewY;
         x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
 
         playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
-
-       
-
-        
-    }
-
-	void Update()
-	{
-        //Movement code. Jank af but I've been at this for 5 hours and no longer care.
-        moveValue.x = moveAction.ReadValue<Vector2>().x;
-        moveValue.z = moveAction.ReadValue<Vector2>().y;
-        m_Rigidbody.MovePosition(transform.position + (transform.forward * moveValue.z * (moveSpeed * ( 1 + sprintModifier * isSprint)) * Time.fixedDeltaTime) + (transform.right * moveValue.x * (moveSpeed * (1 + sprintModifier * isSprint)) * Time.fixedDeltaTime));
-
     }
 }
