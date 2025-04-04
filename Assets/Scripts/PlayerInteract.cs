@@ -47,24 +47,29 @@ public class PlayerInteract : MonoBehaviour
                     }
                 }
             }
-        }
-        else if (seenObject != null)
-        {
-            seenObject.OffHover();
-            seenObject = null;
+
+            else if (seenObject != null)
+            {
+                seenObject.OffHover();
+                seenObject = null;
+            }
         }
 
         if (interactAction.WasPressedThisFrame() && seenObject != null)
         {
             if (seenObject.OnInteract() == 1)
             {
-                swtich (holding)
+                switch (holding)
                 {
                     case true:
                         holding = false;
+                        guideHinge.connectedBody = null;
+                        seenObject.gameObject.GetComponent<Collider>().enabled = true;
                         break;
                     case false:
                         holding = true;
+                        guideHinge.connectedBody = seenObject.gameObject.GetComponent<Rigidbody>();
+                        seenObject.gameObject.GetComponent<Collider>().enabled = false;
                         break;
                 }
             }
