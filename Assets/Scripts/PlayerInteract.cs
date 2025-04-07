@@ -64,12 +64,10 @@ public class PlayerInteract : MonoBehaviour
                     case true:
                         holding = false;
                         guideHinge.connectedBody = null;
-                        seenObject.gameObject.GetComponent<Collider>().enabled = true;
                         break;
                     case false:
                         holding = true;
                         guideHinge.connectedBody = seenObject.gameObject.GetComponent<Rigidbody>();
-                        seenObject.gameObject.GetComponent<Collider>().enabled = false;
                         break;
                 }
             }
