@@ -7,6 +7,7 @@ public class ThrowableClass : Interactable
 {
 
     Rigidbody m_Rigidbody;
+    Collider m_collider;
 
     public Material[] materials;
 
@@ -15,16 +16,14 @@ public class ThrowableClass : Interactable
     Renderer rend;
     bool isHeld;
 
-    Transform outlineFind;
-
     MeshRenderer outline;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isHeld = false;
-        outlineFind = transform.Find("Outline");
-        outline = outlineFind.GetComponent<MeshRenderer>();
+        outline = transform.GetChild(0).GetComponent<MeshRenderer>();
+        m_collider = GetComponent<Collider>();
         m_Rigidbody = GetComponent<Rigidbody>();
         rend = GetComponent<Renderer>();
         materials = rend.materials;
