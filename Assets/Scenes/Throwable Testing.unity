@@ -447,6 +447,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: run
+      value: 
+      objectReference: {fileID: 8300000, guid: 79e87594b3376e74b8f8d1b2914fe744, type: 3}
+    - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 8300000, guid: 5ecffba0730db0c4c8a7631c1a038860, type: 3}
+    - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: vertSensitivity
       value: 10
       objectReference: {fileID: 0}
@@ -515,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 27a579f336645ee49b51cc1fe8ff4a10, type: 3}
   materials: []
 --- !u!82 &1726586157
 AudioSource:
@@ -1306,7 +1314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: a40a48e28ae5690438d79b35f825a196, type: 3}
   materials: []
 --- !u!82 &6429644746215950357
 AudioSource:
@@ -1452,7 +1460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: e6709333a63a4a648aafcc3f9cb47e13, type: 3}
   materials: []
 --- !u!82 &6484840017146486798
 AudioSource:
@@ -1598,7 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 4bc48ffad1c251a4ab687130fdee72b7, type: 3}
   materials: []
 --- !u!82 &6484840017468450569
 AudioSource:
