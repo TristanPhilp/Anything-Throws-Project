@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class CameraRotate : MonoBehaviour
 {
+    //camera vairables
     [SerializeField] private Camera _camera;
 
     public float camRotateY = .05f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -49,6 +51,12 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullScreen)
     { 
         Screen.fullScreen = isFullScreen;
+    }
+
+    //sets MainMenuScreen
+    public void SetToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
     
     //sets mouseSensX
