@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 using System;
+using System.Diagnostics;
 
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]public float horizSensitivity;
     [SerializeField]public float vertSensitivity;
     [SerializeField]public PlayerInput playerInput;
+
+    AudioSource audioPlayer;
+    public AudioClip walk;
+    public AudioClip run;
 
     public float moveSpeed;
     public float sprintModifier;
@@ -40,6 +45,7 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         m_Rigidbody = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     void LateUpdate()
@@ -50,7 +56,7 @@ public class PlayerController : MonoBehaviour
         horizontalInput = lookAction.ReadValue<Vector2>().x;
         verticalInput = lookAction.ReadValue<Vector2>().y;
 
-        Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
+        //UnityEngine.Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
 
         if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
         {
@@ -66,6 +72,7 @@ public class PlayerController : MonoBehaviour
         x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
 
         playerCam.transform.localRotation = Quaternion.Euler(x_rot, 0f, 0f); //camera rotation!
+
     }
 
     // Update is called once per frame
@@ -91,5 +98,33 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+        //Checks if currently moving or not
+        if ((moveValue.x != 0) || (moveValue.z != 0))
+        {
+            if (isSprint == 1)
+            {
+                audioPlayer.clip = run;
+                UnityEngine.Debug.Log("Play Sprint");
+            }
+            else
+            {
+                audioPlayer.clip = walk;
+                UnityEngine.Debug.Log("Play Walk");
+            }
+
+            if (!audioPlayer.isPlaying)
+            {
+                audioPlayer.Play();
+            }
+            else
+            {
+                audioPlayer.UnPause();
+            }
+        }
+        else
+        {
+            audioPlayer.Pause();
+            UnityEngine.Debug.Log("Shhh");
+        }
     }
 }
