@@ -52,6 +52,7 @@ public class ThrowableClass : Interactable
         outline.enabled = false;
     }
 
+    //interactation code
     public override int OnInteract()
     {
         m_Rigidbody.WakeUp();
@@ -71,13 +72,14 @@ public class ThrowableClass : Interactable
         return 1;
     }
 
+    //returns hold object
     void Hold()
     {
         isHeld = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
         //ColorShift(Color.red);
     }
-
+    //returns drop object
     void Drop()
     {
         isHeld = false;

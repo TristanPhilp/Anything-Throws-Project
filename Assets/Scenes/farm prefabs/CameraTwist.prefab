@@ -569,7 +569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -860,6 +860,7 @@ GameObject:
   - component: {fileID: 5220283903166794841}
   - component: {fileID: 2203862339833055537}
   - component: {fileID: 4815219415809983500}
+  - component: {fileID: 175963426278789984}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: MainCamera
@@ -964,8 +965,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 51fb68f3b80a8bd41aaec5e8057d0f2d, type: 2}
-  playerController: {fileID: 7483324666316173587, guid: eeba78f07aeabff42a413b96e81523cc, type: 3}
+  playerController: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
   resolutionDropdown: {fileID: 2958704882208428925}
+--- !u!114 &175963426278789984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390070736683876300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ccc68ab79199784ea22c737fd3dc36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 6432632337919988447}
 --- !u!1 &1396959353824858479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,7 +2997,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -222.41}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -225, y: 122.5}
+  m_AnchoredPosition: {x: -225.00003, y: 122.5}
   m_SizeDelta: {x: -350, y: 325}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2281826039348204727
@@ -3918,7 +3932,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8837207171249582373}
   - component: {fileID: 4288535480763855433}
-  - component: {fileID: 855769395535905147}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -3954,18 +3967,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6432632337919988447}
   m_CullTransparentMesh: 1
---- !u!114 &855769395535905147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6432632337919988447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ccc68ab79199784ea22c737fd3dc36b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6446712997613288110
 GameObject:
   m_ObjectHideFlags: 0
@@ -4087,7 +4088,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 855769395535905147}
+      - m_Target: {fileID: 175963426278789984}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -4152,7 +4153,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -4167,7 +4168,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 60.000004
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -4680,8 +4681,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 380, y: -60}
-  m_SizeDelta: {x: 725, y: 60}
+  m_AnchoredPosition: {x: 275, y: -60}
+  m_SizeDelta: {x: 500, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2862042470335629713
 CanvasRenderer:
@@ -4776,7 +4777,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0.000061035156, w: 0}
+  m_margin: {x: 0, y: 0, z: -1.8440245, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5178,7 +5179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 6.6632, y: 0}
+  m_AnchoredPosition: {x: 6.6632004, y: 0}
   m_SizeDelta: {x: 13.3264, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2712384527803245842

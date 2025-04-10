@@ -1,59 +1,109 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    InputAction pauseToggle;
+   // InputAction pauseToggle;
     public GameObject menu;
-    Scene scene;
+    public AudioMixer audioMixer;
+    public PlayerController playerController;
+    public GameObject PauseMenu;
+    public GameObject OptionsMenu;
+   // public bool isPauseMenuOpen = false;
+    //public bool isMainMenu = true;
+    InputAction pauseToggle;
+
+    public TMPro.TMP_Dropdown resolutionDropdown;
+
+    Resolution[] resolutions;
+
+    private void Start()
+    {
+        //pauseToggle = InputSystem.actions.FindAction("Pause");
+        //Cursor.lockState = CursorLockMode.Locked;
+
+        resolutions = Screen.resolutions;
+
+        resolutionDropdown.ClearOptions();
+
+        List<string> options = new List<string>();
+        int currentResolutionIndex = 0;
+
+        for (int i = 0; i < resolutions.Length; i++)
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.currentResolution.width &&
+                resolutions[i].height == Screen.currentResolution.height)
+            {
+                currentResolutionIndex = i;
+
+            }
+        }
+
+        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
+
+    }
+    //public bool isPauseMenuOpen = false;
+    
+    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //gets active scene
+   /** void Start()
     {
         scene = SceneManager.GetActiveScene();
         //locks cursor 
         pauseToggle = InputSystem.actions.FindAction("Pause");
         if (scene.buildIndex != 0)
         {
-            
             Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             Cursor.lockState = CursorLockMode.None;
+            menu.SetActive(true);
         }
-    }
+    }**/
 
     // Update is called once per frame
     void Update()
     {
-        if (pauseToggle.WasPressedThisFrame())
+       /* if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Time.timeScale <= 0.5)
+
+
+            isPauseMenuOpen = !isPauseMenuOpen;
+            if (isPauseMenuOpen == true)
             {
-                Resume();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = false;
+                menu.SetActive(true);
             }
             else
             {
-                Pause();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = true;
+                menu.SetActive(false);
             }
         }
-    }
-
-    public void Exit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
-
-    }
-
-    void Pause()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Time.timeScale = 0;
-        menu.SetActive(true);
+        /* if (pauseToggle.WasPressedThisFrame())
+         {
+             if (Time.timeScale <= 0.5)
+             {
+                 Resume();
+             }
+             else
+             {
+                 Pause();
+             }
+         }*/
     }
 
     //resumes game
@@ -62,6 +112,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1;
         menu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     //starts game form start menu
     public void PlayGame()
@@ -86,6 +137,36 @@ public class MainMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         menu.SetActive(false);
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+    }
+
+    //sets fullscreen
+    public void SetFullscreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
+    //sets mouseSensX
+    public void SetMouseSensitivityX(float senX)
+    {
+        playerController.horizSensitivity = senX;
+    }
+
+    //sets Mouse SensY
+    public void SetMouseSensitivityY(float senY)
+    {
+        playerController.vertSensitivity = senY;
+    }
+
+
+    public void SetResolution(int resolutionIndex)
+    {
+
+        Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
     }
 
 }

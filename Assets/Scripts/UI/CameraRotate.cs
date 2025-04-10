@@ -16,7 +16,7 @@ public class CameraRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //rotates camera
         transform.Rotate(0, camRotateY, 0 );
 
         //if (_camera.transform.rotation == 90f)

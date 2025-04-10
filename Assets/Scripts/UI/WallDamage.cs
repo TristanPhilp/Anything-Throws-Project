@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class WallDamage : MonoBehaviour
 {
+    //wall variables
     public float wallHealth = 5;
     public float objectBreakTime = 0.1f;
     public float wallDestructTime = 0.5f;
@@ -9,6 +10,7 @@ public class WallDamage : MonoBehaviour
 
     public bool wallBroke = false;
 
+    //calls wall destructions and destroys object.
     void Update()
     {
         if (wallBroke == false)
@@ -25,6 +27,7 @@ public class WallDamage : MonoBehaviour
         }
     }
 
+    //checks to see if object hits wall.
     private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Poopfartius | " + other.gameObject);

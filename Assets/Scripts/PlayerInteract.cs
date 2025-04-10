@@ -30,6 +30,7 @@ public class PlayerInteract : MonoBehaviour
         Ray ray = new Ray(transform.position, forward);
         Debug.DrawRay(transform.position, forward, Color.red);
 
+        //
         if (holding == false)
         {
             if (Physics.Raycast(ray, out hit, interactDistance))
@@ -55,6 +56,7 @@ public class PlayerInteract : MonoBehaviour
             }
         }
 
+        //
         if (interactAction.WasPressedThisFrame() && seenObject != null)
         {
             if (seenObject.OnInteract() == 1)
