@@ -105,28 +105,33 @@ public class SettingsMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    //sets volume
-    public void SetVolume(float volume)
-    {
-        audioMixer.SetFloat("volume", volume);
-    }
+    
 
     //sets fullscreen
     public void SetFullscreen(bool isFullScreen)
     { 
         Screen.fullScreen = isFullScreen;
     }
- 
+
+    //sets volume
+    public void SetVolume(float volume)
+    {
+        audioMixer.SetFloat("volume", volume);
+        KeepVariables.volumeFloat = volume;
+    }
+
     //sets mouseSensX
     public void SetMouseSensitivityX(float senX)
     {
-       playerController.horizSensitivity = senX;
+        playerController.vertSensitivity = KeepVariables.sensX;
+        KeepVariables.sensX = senX;
     }
 
     //sets Mouse SensY
     public void SetMouseSensitivityY(float senY)
     {
-        playerController.vertSensitivity = senY;
+        playerController.vertSensitivity = KeepVariables.sensY;
+        KeepVariables.sensY = senY;
     }
 
     public void SetResolution(int resolutionIndex)

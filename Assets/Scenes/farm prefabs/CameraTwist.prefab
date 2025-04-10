@@ -372,17 +372,17 @@ MonoBehaviour:
   m_FillRect: {fileID: 3950591652425069117}
   m_HandleRect: {fileID: 1291624777003690772}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4815219415809983500}
         m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: SetMouseSensitivityX
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -966,6 +966,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 51fb68f3b80a8bd41aaec5e8057d0f2d, type: 2}
   playerController: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+  PauseMenu: {fileID: 0}
+  OptionsMenu: {fileID: 0}
+  keepVariables: {fileID: 0}
+  isPauseMenuOpen: 0
   resolutionDropdown: {fileID: 2958704882208428925}
 --- !u!114 &175963426278789984
 MonoBehaviour:
@@ -980,6 +984,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 6432632337919988447}
+  audioMixer: {fileID: 0}
+  playerController: {fileID: 0}
+  PauseMenu: {fileID: 0}
+  OptionsMenu: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
 --- !u!1 &1396959353824858479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5051,10 +5060,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 3612113255404810121}
   m_HandleRect: {fileID: 448943484270852137}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 1
   m_MaxValue: 20
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

@@ -12,9 +12,6 @@ public class MainMenu : MonoBehaviour
     public PlayerController playerController;
     public GameObject PauseMenu;
     public GameObject OptionsMenu;
-   // public bool isPauseMenuOpen = false;
-    //public bool isMainMenu = true;
-    InputAction pauseToggle;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
 
@@ -22,9 +19,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        //pauseToggle = InputSystem.actions.FindAction("Pause");
-        //Cursor.lockState = CursorLockMode.Locked;
-
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -49,61 +43,6 @@ public class MainMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
-    }
-    //public bool isPauseMenuOpen = false;
-    
-    
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //gets active scene
-   /** void Start()
-    {
-        scene = SceneManager.GetActiveScene();
-        //locks cursor 
-        pauseToggle = InputSystem.actions.FindAction("Pause");
-        if (scene.buildIndex != 0)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            menu.SetActive(true);
-        }
-    }**/
-
-    // Update is called once per frame
-    void Update()
-    {
-       /* if (Input.GetKeyDown(KeyCode.Escape))
-        {
-
-
-            isPauseMenuOpen = !isPauseMenuOpen;
-            if (isPauseMenuOpen == true)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = false;
-                menu.SetActive(true);
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = true;
-                menu.SetActive(false);
-            }
-        }
-        /* if (pauseToggle.WasPressedThisFrame())
-         {
-             if (Time.timeScale <= 0.5)
-             {
-                 Resume();
-             }
-             else
-             {
-                 Pause();
-             }
-         }*/
     }
 
     //resumes game
@@ -142,6 +81,7 @@ public class MainMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+        KeepVariables.volumeFloat = volume;
     }
 
     //sets fullscreen
@@ -154,12 +94,14 @@ public class MainMenu : MonoBehaviour
     public void SetMouseSensitivityX(float senX)
     {
         playerController.horizSensitivity = senX;
+        KeepVariables.sensX = senX;
     }
 
     //sets Mouse SensY
     public void SetMouseSensitivityY(float senY)
     {
         playerController.vertSensitivity = senY;
+        KeepVariables.sensY = senY;
     }
 
 
