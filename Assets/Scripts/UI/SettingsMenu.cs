@@ -1,18 +1,21 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+
+public class SettingsMenu : MonoBehaviour
 {
-    // InputAction pauseToggle;
-    public GameObject menu;
     public AudioMixer audioMixer;
     public PlayerController playerController;
-    //public GameObject PauseMenu;
+    public GameObject PauseMenu;
     public GameObject OptionsMenu;
+    public bool isPauseMenuOpen = false;
+    //public bool isMainMenu = true;
+    InputAction pauseToggle;
     public Slider SliderY;
     public Slider SliderX;
     public Slider VolumeSlider;
@@ -24,6 +27,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        pauseToggle = InputSystem.actions.FindAction("Pause");
+        Cursor.lockState = CursorLockMode.Locked;
+
         resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
@@ -37,10 +43,10 @@ public class MainMenu : MonoBehaviour
             options.Add(option);
 
             if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+                resolutions[i].height == Screen.currentResolution.height )
             {
                 currentResolutionIndex = i;
-
+            
             }
         }
 
@@ -48,50 +54,67 @@ public class MainMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
-
         SetMouseSensitivityY();
         SetMouseSensitivityX();
         SetVolume();
         //SetFullScreen();
-
     }
 
+    //updates pause menu
     public void Update()
     {
+        
 
+        if (pauseToggle.WasPressedThisFrame())
+        {
+
+            isPauseMenuOpen = !isPauseMenuOpen;
+            if (isPauseMenuOpen == true)
+            {
+                
+                Pause();
+                Cursor.lockState = CursorLockMode.None;
+
+            }
+            else
+            {
+        
+                
+                Resume();
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
+        }
+    }
+
+    //pauses game
+    void Pause()
+    {
+        
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        isPauseMenuOpen = true;
     }
 
     //resumes game
     public void Resume()
     {
+        
+        PauseMenu.SetActive(false);
+        OptionsMenu.SetActive(false);
         Time.timeScale = 1;
-        menu.SetActive(false);
+        isPauseMenuOpen = false;
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-    //starts game form start menu
-    public void PlayGame()
-    {
-
-        SceneManager.LoadScene(1);
     }
 
-    //quits game
-    public void QuitGame()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
-    }
-
-    //opens options menu
+    //returns to menu
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        menu.SetActive(false);
+        PauseMenu.SetActive(false);
+        OptionsMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 
     //sets volume
@@ -126,8 +149,6 @@ public class MainMenu : MonoBehaviour
     {
         KeepVariables.sensX = senX;
         playerController.horizSensitivity = senX;
-
-
     }
 
     public void SetMouseSensitivityX()
@@ -147,11 +168,9 @@ public class MainMenu : MonoBehaviour
         SliderY.value = KeepVariables.sensY;
     }
 
-
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
-
     }
 }
