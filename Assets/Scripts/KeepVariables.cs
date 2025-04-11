@@ -1,6 +1,6 @@
 using UnityEngine;
 
-//get vraibales to transfer between classes
+//get variabales to transfer between classes
 public class KeepVariables : MonoBehaviour
 {
     public static float sensY;
@@ -8,4 +8,6 @@ public class KeepVariables : MonoBehaviour
     public static float sensX;
 
     public static float volumeFloat;
+
+    public static bool fullScreen;
 }

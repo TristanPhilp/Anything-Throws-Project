@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class SettingsMenu : MonoBehaviour
@@ -15,6 +16,10 @@ public class SettingsMenu : MonoBehaviour
     public bool isPauseMenuOpen = false;
     //public bool isMainMenu = true;
     InputAction pauseToggle;
+    public Slider SliderY;
+    public Slider SliderX;
+    public Slider VolumeSlider;
+    public Toggle FullScreenToggle;
 
     public TMPro.TMP_Dropdown resolutionDropdown;
 
@@ -49,11 +54,17 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
+        SetMouseSensitivityY();
+        SetMouseSensitivityX();
+        SetVolume();
+        //SetFullScreen();
     }
 
     //updates pause menu
     public void Update()
     {
+        
+
         if (pauseToggle.WasPressedThisFrame())
         {
 
@@ -96,6 +107,7 @@ public class SettingsMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    //returns to menu
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
@@ -105,14 +117,6 @@ public class SettingsMenu : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    
-
-    //sets fullscreen
-    public void SetFullscreen(bool isFullScreen)
-    { 
-        Screen.fullScreen = isFullScreen;
-    }
-
     //sets volume
     public void SetVolume(float volume)
     {
@@ -120,23 +124,53 @@ public class SettingsMenu : MonoBehaviour
         KeepVariables.volumeFloat = volume;
     }
 
+    public void SetVolume()
+    {
+        VolumeSlider.value = KeepVariables.volumeFloat;
+    }
+
+    //sets fullscreen
+    public void SetFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+        KeepVariables.fullScreen = isFullScreen;
+    }
+
+    public void SetFullScreen()
+    {
+        if (KeepVariables.fullScreen == true)
+            FullScreenToggle.isOn = true;
+        else
+            FullScreenToggle.isOn = false;
+    }
+
     //sets mouseSensX
     public void SetMouseSensitivityX(float senX)
     {
-        playerController.vertSensitivity = KeepVariables.sensX;
         KeepVariables.sensX = senX;
+        playerController.horizSensitivity = senX;
+    }
+
+    public void SetMouseSensitivityX()
+    {
+        SliderX.value = KeepVariables.sensX;
     }
 
     //sets Mouse SensY
     public void SetMouseSensitivityY(float senY)
     {
-        playerController.vertSensitivity = KeepVariables.sensY;
-        KeepVariables.sensY = senY;
+        playerController.vertSensitivity = senY;
+        KeepVariables.sensY = playerController.vertSensitivity;
+    }
+
+    public void SetMouseSensitivityY()
+    {
+        SliderY.value = KeepVariables.sensY;
     }
 
     public void SetResolution(int resolutionIndex)
     {
-       
+        Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
     }
 }
