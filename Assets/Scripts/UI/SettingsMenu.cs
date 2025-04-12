@@ -28,7 +28,6 @@ public class SettingsMenu : MonoBehaviour
     private void Start()
     {
         pauseToggle = InputSystem.actions.FindAction("Pause");
-        Cursor.lockState = CursorLockMode.Locked;
 
         resolutions = Screen.resolutions;
 
