@@ -1403,7 +1403,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3356809431904300360, guid: c2660eef5ce73b7419149ebbce0e8100, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 10000000
       objectReference: {fileID: 0}
     - target: {fileID: 5572646554106089431, guid: c2660eef5ce73b7419149ebbce0e8100, type: 3}
       propertyPath: m_LocalScale.x
@@ -7379,7 +7379,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1001 &877490850
 PrefabInstance:
   m_ObjectHideFlags: 0
