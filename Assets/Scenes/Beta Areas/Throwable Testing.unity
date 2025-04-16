@@ -524,7 +524,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactSound: {fileID: 8300000, guid: 27a579f336645ee49b51cc1fe8ff4a10, type: 3}
-  materials: []
+  collideSound: {fileID: 0}
+  launchSound: {fileID: 0}
 --- !u!82 &1726586157
 AudioSource:
   m_ObjectHideFlags: 0
@@ -671,6 +672,63 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3861478300804232965, guid: 56bbf26243f962949a145b204e8bfd40, type: 3}
+--- !u!1001 &2133932047
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1327506822340010889, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2609582765840863642, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
+      propertyPath: m_Name
+      value: Trebuchet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4240c2ef096b80c538fd038b65e114be, type: 3}
 --- !u!33 &65356570577898386
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1504,7 +1562,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactSound: {fileID: 0}
-  materials: []
+  collideSound: {fileID: 0}
+  launchSound: {fileID: 0}
 --- !u!82 &5930460326566292891
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1664,7 +1723,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactSound: {fileID: 8300000, guid: a40a48e28ae5690438d79b35f825a196, type: 3}
-  materials: []
+  collideSound: {fileID: 0}
+  launchSound: {fileID: 0}
 --- !u!82 &6429644746215950357
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1810,7 +1870,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactSound: {fileID: 8300000, guid: e6709333a63a4a648aafcc3f9cb47e13, type: 3}
-  materials: []
+  collideSound: {fileID: 0}
+  launchSound: {fileID: 0}
 --- !u!82 &6484840017146486798
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1956,7 +2017,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactSound: {fileID: 8300000, guid: 4bc48ffad1c251a4ab687130fdee72b7, type: 3}
-  materials: []
+  collideSound: {fileID: 0}
+  launchSound: {fileID: 0}
 --- !u!82 &6484840017468450569
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2325,3 +2387,4 @@ SceneRoots:
   - {fileID: 5199732672134650336}
   - {fileID: 5208074924936975457}
   - {fileID: 8931128231224250835}
+  - {fileID: 2133932047}
