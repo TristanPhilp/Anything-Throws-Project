@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     InputAction lookAction;
     InputAction moveAction;
+    InputAction sprintAction;
     float horizontalInput;
     float verticalInput;
     Vector3 moveValue;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
         m_Rigidbody = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         audioPlayer = GetComponent<AudioSource>();
@@ -72,8 +74,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        var sprintButton = playerInput.actions["sprint"]; //Pulls the SPRINT action from the player.
-        isSprint = sprintButton.IsPressed() ?  1 : 0;
+        isSprint = sprintAction.IsPressed() ?  1 : 0;
 
         //Movement code. Jank af but I've been at this for 5 hours and no longer care.
         moveValue.x = moveAction.ReadValue<Vector2>().x;
