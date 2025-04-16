@@ -9,11 +9,7 @@ public class ThrowableClass : Interactable
     Rigidbody m_Rigidbody;
     Collider m_collider;
 
-    public Material[] materials;
-
     AudioSource audioPlayer;
-
-    Renderer rend;
     bool isHeld;
 
     Transform outlineFind;
@@ -21,6 +17,9 @@ public class ThrowableClass : Interactable
     MeshRenderer outline;
 
     MeshCollider collison;
+
+    public AudioClip collideSound;
+    public AudioClip launchSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,8 +29,6 @@ public class ThrowableClass : Interactable
         outline = outlineFind.GetComponent<MeshRenderer>();
         collison = GetComponent<MeshCollider>();
         m_Rigidbody = GetComponent<Rigidbody>();
-        rend = GetComponent<Renderer>();
-        materials = rend.materials;
         audioPlayer = GetComponent<AudioSource>();
         m_Rigidbody.Sleep();
     }
@@ -77,29 +74,23 @@ public class ThrowableClass : Interactable
     {
         isHeld = true;
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
-        //ColorShift(Color.red);
     }
     //returns drop object
     void Drop()
     {
         isHeld = false;
         gameObject.layer = LayerMask.NameToLayer("Default");
-        //ColorShift(Color.blue);
-    }
-
-    //Interacts with the current material to set the material color to the input color.
-    public void ColorShift(Color color)
-    {
-        materials[0].color = color;
     }
 
     public void OnLaunch()
     {
-
+        audioPlayer.clip = launchSound;
+        audioPlayer.Play();
     }
 
     public void OnWallHit()
     {
-
+        audioPlayer.clip = collideSound;
+        audioPlayer.Play();
     }
 }
