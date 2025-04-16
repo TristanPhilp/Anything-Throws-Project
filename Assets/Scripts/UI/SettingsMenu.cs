@@ -136,13 +136,13 @@ public class SettingsMenu : MonoBehaviour
         KeepVariables.fullScreen = isFullScreen;
     }
 
-    public void SetFullScreen()
+    /**public void SetFullScreen()
     {
         if (KeepVariables.fullScreen == true)
             FullScreenToggle.isOn = true;
         else
             FullScreenToggle.isOn = false;
-    }
+    }**/
 
     //sets mouseSensX
     public void SetMouseSensitivityX(float senX)
