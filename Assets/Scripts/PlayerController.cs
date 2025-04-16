@@ -28,16 +28,9 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody m_Rigidbody;
 
-    //float maxLook;
-    //float minLook;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //defines how far up and down the player can look
-        //currently unused.
-        //maxLook = 90;
-        //minLook = -90;
-
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -64,7 +57,6 @@ public class PlayerController : MonoBehaviour
         //Concocting the view angles.
         float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
         float viewY = verticalInput * vertSensitivity * Time.deltaTime;
-        Debug.Log (viewY);
 
         x_rot -= viewY;
         x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
