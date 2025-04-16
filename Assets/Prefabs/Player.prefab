@@ -335,6 +335,8 @@ MonoBehaviour:
   horizSensitivity: 10
   vertSensitivity: 5
   playerInput: {fileID: 3418810226392586802}
+  walk: {fileID: 0}
+  run: {fileID: 0}
   moveSpeed: 7
   sprintModifier: 1.5
 --- !u!54 &4517079856399016479
@@ -362,7 +364,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7920988971195808119
 CapsuleCollider:
