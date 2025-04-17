@@ -79,6 +79,7 @@ public class ThrowableClass : Interactable
     void Drop()
     {
         isHeld = false;
+        collison.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
