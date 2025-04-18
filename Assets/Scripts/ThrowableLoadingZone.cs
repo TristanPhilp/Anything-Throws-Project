@@ -23,7 +23,7 @@ public class ThrowableLoadingZone : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collided with something");
-        if (other.CompareTag("Throwable"))
+        if (other.gameObject.TryGetComponent<Interactable>(out Interactable interact))
         {
             Debug.Log("Throwable detected");
             throwable = other.gameObject;
@@ -35,10 +35,6 @@ public class ThrowableLoadingZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Throwable"))
-        {
-            throwable = null;
-        }
 
     }
 
