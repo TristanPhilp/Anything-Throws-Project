@@ -18,6 +18,8 @@ public class ThrowableClass : Interactable
 
     public AudioClip collideSound;
     public AudioClip launchSound;
+    public float pickupScale;
+    private float orginalScale;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -29,6 +31,7 @@ public class ThrowableClass : Interactable
         m_Rigidbody = GetComponent<Rigidbody>();
         audioPlayer = GetComponent<AudioSource>();
         m_Rigidbody.Sleep();
+        orginalScale = transform.localScale.x;
     }
 
     public override void OnHover()
@@ -65,12 +68,14 @@ public class ThrowableClass : Interactable
     void Hold()
     {
         isHeld = true;
+        transform.localScale = new Vector3(pickupScale, pickupScale, pickupScale);
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
     }
     //returns drop object
     void Drop()
     {
         isHeld = false;
+        transform.localScale = new Vector3(orginalScale, orginalScale, orginalScale);
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
