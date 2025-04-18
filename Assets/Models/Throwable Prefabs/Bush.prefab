@@ -252,6 +252,7 @@ MonoBehaviour:
   interactSound: {fileID: 0}
   collideSound: {fileID: 0}
   launchSound: {fileID: 0}
+  pickupScale: 1
 --- !u!1 &6542554173754949044
 GameObject:
   m_ObjectHideFlags: 0

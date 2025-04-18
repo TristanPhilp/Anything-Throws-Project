@@ -338,3 +338,4 @@ MonoBehaviour:
   interactSound: {fileID: 0}
   collideSound: {fileID: 0}
   launchSound: {fileID: 0}
+  pickupScale: 1
