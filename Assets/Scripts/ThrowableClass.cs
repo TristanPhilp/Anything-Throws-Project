@@ -75,7 +75,6 @@ public class ThrowableClass : Interactable
     void Drop()
     {
         isHeld = false;
-        transform.localScale = new Vector3(orginalScale, orginalScale, orginalScale);
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
