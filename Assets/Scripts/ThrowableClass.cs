@@ -16,8 +16,6 @@ public class ThrowableClass : Interactable
 
     MeshRenderer outline;
 
-    MeshCollider collison;
-
     public AudioClip collideSound;
     public AudioClip launchSound;
 
@@ -27,17 +25,11 @@ public class ThrowableClass : Interactable
         isHeld = false;
         outlineFind = transform.Find("Outline");
         outline = outlineFind.GetComponent<MeshRenderer>();
-        collison = GetComponent<MeshCollider>();
+        m_collider = GetComponent<MeshCollider>();
         m_Rigidbody = GetComponent<Rigidbody>();
         audioPlayer = GetComponent<AudioSource>();
         m_Rigidbody.Sleep();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
 
     public override void OnHover()
     {
@@ -55,9 +47,9 @@ public class ThrowableClass : Interactable
         m_Rigidbody.WakeUp();
         audioPlayer.clip = interactSound;
         audioPlayer.Play();
+
         //activate shader for now
         Debug.Log("Throwable Object Selected");
-        collison.enabled = false;
         if (!isHeld)
         {
             Hold();
@@ -79,7 +71,6 @@ public class ThrowableClass : Interactable
     void Drop()
     {
         isHeld = false;
-        collison.enabled = true;
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
