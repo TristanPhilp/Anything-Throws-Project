@@ -249,9 +249,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactSound: {fileID: 0}
-  collideSound: {fileID: 0}
-  launchSound: {fileID: 0}
+  interactSound: {fileID: 8300000, guid: 1fbfc4ba7977e4d47b38a883b9877934, type: 3}
+  collideSound: {fileID: 8300000, guid: 2efbe34c176b7b648a07eb8336a8e1bb, type: 3}
+  launchSound: {fileID: 8300000, guid: 974898daf7f0a2f42aef9233a204c9ea, type: 3}
   pickupScale: 0.5
 --- !u!1 &6542554173754949044
 GameObject:
