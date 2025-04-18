@@ -16,10 +16,10 @@ public class ThrowableClass : Interactable
 
     MeshRenderer outline;
 
-    MeshCollider collison;
-
     public AudioClip collideSound;
     public AudioClip launchSound;
+    public float pickupScale;
+    private float orginalScale;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,17 +27,12 @@ public class ThrowableClass : Interactable
         isHeld = false;
         outlineFind = transform.Find("Outline");
         outline = outlineFind.GetComponent<MeshRenderer>();
-        collison = GetComponent<MeshCollider>();
+        m_collider = GetComponent<MeshCollider>();
         m_Rigidbody = GetComponent<Rigidbody>();
         audioPlayer = GetComponent<AudioSource>();
         m_Rigidbody.Sleep();
+        orginalScale = transform.localScale.x;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
 
     public override void OnHover()
     {
@@ -55,9 +50,9 @@ public class ThrowableClass : Interactable
         m_Rigidbody.WakeUp();
         audioPlayer.clip = interactSound;
         audioPlayer.Play();
+
         //activate shader for now
         Debug.Log("Throwable Object Selected");
-        collison.enabled = false;
         if (!isHeld)
         {
             Hold();
@@ -73,13 +68,14 @@ public class ThrowableClass : Interactable
     void Hold()
     {
         isHeld = true;
+        transform.localScale = new Vector3(pickupScale, pickupScale, pickupScale);
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
     }
     //returns drop object
     void Drop()
     {
         isHeld = false;
-        collison.enabled = true;
+        transform.localScale = new Vector3(orginalScale, orginalScale, orginalScale);
         gameObject.layer = LayerMask.NameToLayer("Default");
     }
 
