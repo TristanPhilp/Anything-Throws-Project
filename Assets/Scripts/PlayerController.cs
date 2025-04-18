@@ -48,13 +48,11 @@ public class PlayerController : MonoBehaviour
         horizontalInput = lookAction.ReadValue<Vector2>().x;
         verticalInput = lookAction.ReadValue<Vector2>().y;
 
-        Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
-
-        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
-        {
-            horizontalInput *= controllerLookAdjust;
-            verticalInput *= controllerLookAdjust;
-        } //manually tweak lookspeed on controller.
+        //if (!InputSystem.currentControlScheme.Equals("Keyboard&Mouse"))
+        //{
+        //    horizontalInput *= controllerLookAdjust;
+        //    verticalInput *= controllerLookAdjust;
+        //} //manually tweak lookspeed on controller.
 
         //Concocting the view angles.
         float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
@@ -91,12 +89,12 @@ public class PlayerController : MonoBehaviour
             if (isSprint == 1)
             {
                 audioPlayer.clip = run;
-                UnityEngine.Debug.Log("Play Sprint");
+                //UnityEngine.Debug.Log("Play Sprint");
             }
             else
             {
                 audioPlayer.clip = walk;
-                UnityEngine.Debug.Log("Play Walk");
+                //UnityEngine.Debug.Log("Play Walk");
             }
 
             if (!audioPlayer.isPlaying)
@@ -111,7 +109,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             audioPlayer.Pause();
-            Debug.Log("Shhh");
+            //Debug.Log("Shhh");
         }
 
     }

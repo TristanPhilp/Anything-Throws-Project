@@ -57,7 +57,6 @@ public class ThrowableClass : Interactable
         audioPlayer.Play();
         //activate shader for now
         Debug.Log("Throwable Object Selected");
-        collison.enabled = false;
         if (!isHeld)
         {
             Hold();
