@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     InputAction lookAction;
     InputAction moveAction;
+    InputAction sprintAction;
     float horizontalInput;
     float verticalInput;
     Vector3 moveValue;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
         m_Rigidbody = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
         audioPlayer = GetComponent<AudioSource>();
@@ -53,13 +55,11 @@ public class PlayerController : MonoBehaviour
         horizontalInput = lookAction.ReadValue<Vector2>().x;
         verticalInput = lookAction.ReadValue<Vector2>().y;
 
-        Debug.Log($"Mouse Position: {horizontalInput}, {verticalInput}");
-
-        if (!playerInput.currentControlScheme.Equals("Keyboard&Mouse"))
-        {
-            horizontalInput *= controllerLookAdjust;
-            verticalInput *= controllerLookAdjust;
-        } //manually tweak lookspeed on controller.
+        //if (!InputSystem.currentControlScheme.Equals("Keyboard&Mouse"))
+        //{
+        //    horizontalInput *= controllerLookAdjust;
+        //    verticalInput *= controllerLookAdjust;
+        //} //manually tweak lookspeed on controller.
 
         //Concocting the view angles.
         float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
@@ -80,8 +80,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        var sprintButton = playerInput.actions["sprint"]; //Pulls the SPRINT action from the player.
-        isSprint = sprintButton.IsPressed() ?  1 : 0;
+        isSprint = sprintAction.IsPressed() ?  1 : 0;
 
         //Movement code. Jank af but I've been at this for 5 hours and no longer care.
         moveValue.x = moveAction.ReadValue<Vector2>().x;
@@ -98,12 +97,12 @@ public class PlayerController : MonoBehaviour
             if (isSprint == 1)
             {
                 audioPlayer.clip = run;
-                UnityEngine.Debug.Log("Play Sprint");
+                //UnityEngine.Debug.Log("Play Sprint");
             }
             else
             {
                 audioPlayer.clip = walk;
-                UnityEngine.Debug.Log("Play Walk");
+                //UnityEngine.Debug.Log("Play Walk");
             }
 
             if (!audioPlayer.isPlaying)
@@ -118,7 +117,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             audioPlayer.Pause();
-            Debug.Log("Shhh");
+            //Debug.Log("Shhh");
         }
 
     }
