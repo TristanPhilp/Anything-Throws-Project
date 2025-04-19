@@ -28,7 +28,9 @@ public class ThrowableLoadingZone : MonoBehaviour
             Debug.Log("Throwable detected");
             throwable = other.gameObject;
             launcher.GetComponent<TrebuchetController>().launchable = throwable;
-
+            throwable.transform.position = transform.position;
+            throwable.GetComponent<Rigidbody>().isKinematic = true;
+            throwable.transform.SetParent(transform);
         }
 
     }
