@@ -17,6 +17,8 @@ public class TrebuchetController : MonoBehaviour
     //Used to play the launching sound
     AudioSource launchPlayer;
     public AudioSource audioPlayer;
+    public AudioClip launchSound;
+    public AudioClip resetSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,11 +41,15 @@ public class TrebuchetController : MonoBehaviour
             }
             Debug.Log("Launching");
             animator.Play("Fling");
+            launchPlayer.clip = launchSound;
+            launchPlayer.Play();
             atRest = true;
         }
         else
         {
             animator.Play("Reset");
+            launchPlayer.clip = resetSound;
+            launchPlayer.Play();
             atRest = false;
         }
     }

@@ -205,6 +205,8 @@ MonoBehaviour:
   animator: {fileID: 8697704048809046393}
   launchable: {fileID: 0}
   audioPlayer: {fileID: 9110916340861102637}
+  launchSound: {fileID: 8300000, guid: 0d6177762887d9e488d9a1bda99a489c, type: 3}
+  resetSound: {fileID: 8300000, guid: 6344f56aaad12e045953b909defa7960, type: 3}
 --- !u!82 &9110916340861102637
 AudioSource:
   m_ObjectHideFlags: 0
