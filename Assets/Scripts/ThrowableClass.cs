@@ -80,6 +80,7 @@ public class ThrowableClass : Interactable
 
     public void OnLaunch()
     {
+        transform.localScale = new Vector3(orginalScale, orginalScale, orginalScale);
         audioPlayer.clip = launchSound;
         audioPlayer.Play();
     }

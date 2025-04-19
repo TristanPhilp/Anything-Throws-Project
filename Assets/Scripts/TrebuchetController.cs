@@ -34,15 +34,15 @@ public class TrebuchetController : MonoBehaviour
             //if there's a throwable in the zone, then add velocity to it and forget the throwable
             Debug.Log("Launching");
             animator.Play("Fling");
-            launchPlayer.clip = launchSound;
-            launchPlayer.Play();
+            audioPlayer.clip = launchSound;
+            audioPlayer.Play();
             atRest = true;
         }
         else
         {
             animator.Play("Reset");
-            launchPlayer.clip = resetSound;
-            launchPlayer.Play();
+            audioPlayer.clip = resetSound;
+            audioPlayer.Play();
             atRest = false;
         }
     }
@@ -50,8 +50,14 @@ public class TrebuchetController : MonoBehaviour
     public void Eject()
     {
         Debug.Log("Throwable Ejected");
-        launchable.transform.SetParent(null);
-        launchable.GetComponent<Rigidbody>().linearVelocity = Vector3.forward;
-        launchable = null;
+        if (launchable != null)
+        {
+            launchable.transform.SetParent(null);
+            launchable.GetComponent<Rigidbody>().isKinematic = false;
+            launchable.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * 20;
+
+            launchable.GetComponent<ThrowableClass>().OnLaunch();
+            launchable = null;
+        }
     }
 }
