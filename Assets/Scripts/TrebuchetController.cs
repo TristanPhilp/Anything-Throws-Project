@@ -11,6 +11,7 @@ public class TrebuchetController : MonoBehaviour
 
     [Header("Objects launch")]
     public GameObject launchable;
+    public Vector3 launchVelocity;
 
     //Used to play the launching sound
     public AudioSource audioPlayer;
@@ -34,6 +35,7 @@ public class TrebuchetController : MonoBehaviour
             //if there's a throwable in the zone, then add velocity to it and forget the throwable
             Debug.Log("Launching");
             animator.Play("Fling");
+            launchable.layer = LayerMask.NameToLayer("Flying");
             audioPlayer.clip = launchSound;
             audioPlayer.Play();
             atRest = true;
@@ -49,16 +51,19 @@ public class TrebuchetController : MonoBehaviour
 
     public void Eject()
     {
-        Debug.Log("Throwable Ejected");
-        if (launchable != null)
-        {
-            launchable.transform.SetParent(null);
-            launchable.GetComponent<Rigidbody>().isKinematic = false;
-            launchable.transform.position += Vector3.forward;
-            launchable.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * 20;
+        if (launchable != null) {
+            Rigidbody launchableRigidbody = launchable.GetComponent<Rigidbody>();
+            Debug.Log("Throwable Ejected");
+            if (launchable != null)
+            {
+                launchable.transform.SetParent(null);
+                launchableRigidbody.isKinematic = false;
 
-            launchable.GetComponent<ThrowableClass>().OnLaunch();
-            launchable = null;
+                launchableRigidbody.linearVelocity = launchVelocity;
+
+                launchable.GetComponent<ThrowableClass>().OnLaunch();
+                launchable = null;
+            }
         }
     }
 }
