@@ -54,6 +54,7 @@ public class TrebuchetController : MonoBehaviour
         {
             launchable.transform.SetParent(null);
             launchable.GetComponent<Rigidbody>().isKinematic = false;
+            launchable.transform.position += Vector3.forward;
             launchable.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * 20;
 
             launchable.GetComponent<ThrowableClass>().OnLaunch();

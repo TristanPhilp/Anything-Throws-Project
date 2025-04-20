@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4403993070306292462
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3644511632867076676}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outline: {fileID: 3644511632867076676}
   interactSound: {fileID: 8300000, guid: d5b77b9e512b78c429e14ccfeab98a29, type: 3}
   collideSound: {fileID: 8300000, guid: b329c733491cf1f48be695061a42d24c, type: 3}
   launchSound: {fileID: 8300000, guid: 9c64df6d74d343041ae4d589d78bd386, type: 3}

@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outline: {fileID: 6542554173754949044}
   interactSound: {fileID: 8300000, guid: 1fbfc4ba7977e4d47b38a883b9877934, type: 3}
   collideSound: {fileID: 8300000, guid: 2efbe34c176b7b648a07eb8336a8e1bb, type: 3}
   launchSound: {fileID: 8300000, guid: 974898daf7f0a2f42aef9233a204c9ea, type: 3}
@@ -270,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8301624109465490196
 Transform:
   m_ObjectHideFlags: 0
@@ -301,7 +302,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6542554173754949044}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
