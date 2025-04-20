@@ -11,6 +11,13 @@ public class WallDamage : MonoBehaviour
 
     public GameObject prefab; //Prefab that gets summoned... please make it only *the wall broken prefab*.. or else the wall will turn into that prefab lol
 
+    //Sound Variables
+    public AudioSource effectPlayer;
+    public AudioClip smallDamageSound;
+    public AudioClip regularDamageSound;
+    public AudioClip mediumDamageSound;
+    public AudioClip largeDamageSound;
+
     //calls wall destructions and destroys object.
     void Update()
     { 
@@ -40,6 +47,28 @@ public class WallDamage : MonoBehaviour
         {
             Destroy(other.gameObject, objectBreakTime);
             wallHealth = wallHealth - 1;
+
+            //In a larger level, this would be a randomly selected sound effect, or use if else for ranges. But for now, this serves the purpose better
+            switch (wallHealth)
+            {
+                case 1:
+                    effectPlayer.clip = largeDamageSound;
+                    effectPlayer.Play();
+                    break;
+                case 2:
+                    effectPlayer.clip = mediumDamageSound;
+                    effectPlayer.Play();
+                    break;
+                case 3:
+                    effectPlayer.clip = regularDamageSound;
+                    effectPlayer.Play();
+                    break;
+                case 4:
+                    effectPlayer.clip = smallDamageSound;
+                    effectPlayer.Play();
+                    break;
+            }
+
         }
     }
 
