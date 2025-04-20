@@ -28,6 +28,7 @@ public class ThrowableLoadingZone : MonoBehaviour
         {
             Debug.Log("Throwable detected");
             throwable = other.gameObject;
+            throwable.layer = LayerMask.NameToLayer("Ignore Raycast");
             trebuchetController.launchable = throwable;
             throwable.transform.position = transform.position;
             throwable.GetComponent<Rigidbody>().isKinematic = true;
