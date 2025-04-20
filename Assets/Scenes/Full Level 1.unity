@@ -13218,7 +13218,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 665382718374629211, guid: 4dff673e4242e304b9ddc5ff35a87585, type: 3}
       propertyPath: m_text
-      value: The king is an ass, go destroy his wall.
+      value: The king is an ass, go destroy his wall. A trebuchet is located in front
+        of the wall near the river.
       objectReference: {fileID: 0}
     - target: {fileID: 1927841159695001791, guid: 4dff673e4242e304b9ddc5ff35a87585, type: 3}
       propertyPath: m_TextWrappingMode

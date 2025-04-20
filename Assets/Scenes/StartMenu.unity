@@ -15311,7 +15311,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-  m_IsOn: 0
+  m_IsOn: 1
 --- !u!224 &4697390912673948409
 RectTransform:
   m_ObjectHideFlags: 0
