@@ -1,13 +1,11 @@
 using System;
+using System.Xml.Serialization;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class TrebuchetController : MonoBehaviour
 {
     [Header("Trebuchet Components")]
-    public GameObject arm;
-    public Quaternion primedPos;
-    public Quaternion restPos;
     public bool atRest;
     public Animator animator;
 
@@ -15,7 +13,6 @@ public class TrebuchetController : MonoBehaviour
     public GameObject launchable;
 
     //Used to play the launching sound
-    AudioSource launchPlayer;
     public AudioSource audioPlayer;
     public AudioClip launchSound;
     public AudioClip resetSound;
@@ -24,8 +21,9 @@ public class TrebuchetController : MonoBehaviour
     void Start()
     {
         atRest = false;
-        launchPlayer = GetComponent<AudioSource>();
+        audioPlayer = GetComponent<AudioSource>();
     }
+
 
     //function for throwing
     public void TryLaunch()
@@ -34,23 +32,32 @@ public class TrebuchetController : MonoBehaviour
         {
 
             //if there's a throwable in the zone, then add velocity to it and forget the throwable
-            if (launchable != null) 
-            {
-                launchable.GetComponent<Rigidbody>().linearVelocity = new Vector3(-20, 15, 0);
-                launchable = null;
-            }
             Debug.Log("Launching");
             animator.Play("Fling");
-            launchPlayer.clip = launchSound;
-            launchPlayer.Play();
+            audioPlayer.clip = launchSound;
+            audioPlayer.Play();
             atRest = true;
         }
         else
         {
             animator.Play("Reset");
-            launchPlayer.clip = resetSound;
-            launchPlayer.Play();
+            audioPlayer.clip = resetSound;
+            audioPlayer.Play();
             atRest = false;
+        }
+    }
+
+    public void Eject()
+    {
+        Debug.Log("Throwable Ejected");
+        if (launchable != null)
+        {
+            launchable.transform.SetParent(null);
+            launchable.GetComponent<Rigidbody>().isKinematic = false;
+            launchable.GetComponent<Rigidbody>().linearVelocity = Vector3.forward * 20;
+
+            launchable.GetComponent<ThrowableClass>().OnLaunch();
+            launchable = null;
         }
     }
 }

@@ -64,7 +64,6 @@ public class PlayerController : MonoBehaviour
         //Concocting the view angles.
         float viewX = horizontalInput * horizSensitivity * Time.deltaTime;
         float viewY = verticalInput * vertSensitivity * Time.deltaTime;
-        Debug.Log (viewY);
 
         x_rot -= viewY;
         x_rot = Mathf.Clamp(x_rot, -70f, 70f); //Limiter, -70f is the lowest y-rot and 70f is highest y-rot.
