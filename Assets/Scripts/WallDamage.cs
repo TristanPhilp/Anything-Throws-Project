@@ -4,12 +4,14 @@ public class WallDamage : MonoBehaviour
 {
     //wall variables
     public float wallHealth = 5; //The amount of objects needed to break the wall.
-    public float objectBreakTime = 0.1f; //Time till the object disappears after making collision.
+    public float objectBreakTime = 0.5f; //Time till the object disappears after making collision.
     public float wallDestructTime = 0.5f; //Time that it takes for the wall to POOF
 
     public float summonPrefabTime = 0.01f; //Time that it takes to summon the prefab
 
     public GameObject prefab; //Prefab that gets summoned... please make it only *the wall broken prefab*.. or else the wall will turn into that prefab lol
+    
+    GameObject collidingObject; //Object that collides with the wall.
 
     //Sound Variables
     public AudioSource effectPlayer;
@@ -20,7 +22,22 @@ public class WallDamage : MonoBehaviour
 
     //calls wall destructions and destroys object.
     void Update()
-    { 
+    {
+        if (collidingObject != null)
+        {
+
+            if (collidingObject.transform.localScale.x > 0.005f)
+            {
+
+                collidingObject.transform.localScale -= new Vector3(0.01f, 0.01f, 0.01f);
+
+            }
+
+
+
+
+        }
+
         if (wallHealth <= 0)
         {
             Destroy(gameObject.GetComponent<BoxCollider>()); //Destroys the object hitbox.
@@ -43,11 +60,17 @@ public class WallDamage : MonoBehaviour
     {
         Debug.Log("A object entered the wall's hitbox.");
 
+        collidingObject = other.gameObject;
+
         if (other.gameObject.name != "Player")
         {
             Destroy(other.gameObject, objectBreakTime);
             wallHealth = wallHealth - 1;
 
+            ParticleSystem ps = GetComponent<ParticleSystem>();
+
+
+            ps.Play();
             //In a larger level, this would be a randomly selected sound effect, or use if else for ranges. But for now, this serves the purpose better
             switch (wallHealth)
             {
