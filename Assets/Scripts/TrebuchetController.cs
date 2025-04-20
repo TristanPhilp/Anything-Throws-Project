@@ -31,11 +31,9 @@ public class TrebuchetController : MonoBehaviour
     {
         if (atRest == false)
         {
-
             //if there's a throwable in the zone, then add velocity to it and forget the throwable
             Debug.Log("Launching");
             animator.Play("Fling");
-            launchable.layer = LayerMask.NameToLayer("Flying");
             audioPlayer.clip = launchSound;
             audioPlayer.Play();
             atRest = true;
@@ -52,6 +50,8 @@ public class TrebuchetController : MonoBehaviour
     public void Eject()
     {
         if (launchable != null) {
+
+            launchable.layer = LayerMask.NameToLayer("Flying");
             Rigidbody launchableRigidbody = launchable.GetComponent<Rigidbody>();
             Debug.Log("Throwable Ejected");
             if (launchable != null)
