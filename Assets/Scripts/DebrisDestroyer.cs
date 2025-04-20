@@ -15,6 +15,10 @@ public class DebrisDestroyer : MonoBehaviour
     void Update()
     {
 
+
+        gameObject.GetComponent<Rigidbody>().AddForce(transform.up * -6000.81f);
+        
+
         if (canDespawn)
         {
             if (transform.localScale.x > 0.001f)
