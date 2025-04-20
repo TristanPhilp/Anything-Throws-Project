@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 [RequireComponent(typeof(Collider))]
 public abstract class Interactable : MonoBehaviour
 {
+    public GameObject outline;
     public AudioClip interactSound;
     Collider m_Collider;
 
@@ -17,11 +19,13 @@ public abstract class Interactable : MonoBehaviour
     //All these do is allow interaction to be implemented on any object without needing to tweak the player interact code.
     public virtual void OnHover()
     {
-        Debug.Log("This item does not have a definition for OnHover");
+        outline.SetActive(true);
+        Debug.Log("This item does not override OnHover");
     }
     public virtual void OffHover()
     {
-        Debug.Log("This item does not have a definition for OffHover");
+        outline.SetActive(false);
+        Debug.Log("This item does not override OffHover");
     }
     public virtual int OnInteract()
     {

@@ -12,10 +12,6 @@ public class ThrowableClass : Interactable
     AudioSource audioPlayer;
     bool isHeld;
 
-    Transform outlineFind;
-
-    MeshRenderer outline;
-
     public AudioClip collideSound;
     public AudioClip launchSound;
     public float pickupScale;
@@ -25,23 +21,11 @@ public class ThrowableClass : Interactable
     void Start()
     {
         isHeld = false;
-        outlineFind = transform.Find("Outline");
-        outline = outlineFind.GetComponent<MeshRenderer>();
         m_collider = GetComponent<MeshCollider>();
         m_Rigidbody = GetComponent<Rigidbody>();
         audioPlayer = GetComponent<AudioSource>();
         m_Rigidbody.Sleep();
         orginalScale = transform.localScale.x;
-    }
-
-    public override void OnHover()
-    {
-        outline.enabled = true;
-    }
-
-    public override void OffHover()
-    {
-        outline.enabled = false;
     }
 
     //interactation code
