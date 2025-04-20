@@ -125,8 +125,9 @@ public class MainMenu : MonoBehaviour
     //sets mouseSensX
     public void SetMouseSensitivityX(float senX)
     {
-        KeepVariables.sensX = senX;
         playerController.horizSensitivity = senX;
+        KeepVariables.sensX = senX;
+        
 
 
     }

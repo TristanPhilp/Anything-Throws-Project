@@ -51,7 +51,7 @@ public class SettingsMenu : MonoBehaviour
         }
 
         resolutionDropdown.AddOptions(options);
-        //resolutionDropdown.value = currentResolutionIndex;
+       //resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
 
         SetMouseSensitivityY();
