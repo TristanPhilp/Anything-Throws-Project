@@ -4345,6 +4345,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 7316467666552486752}
     m_Modifications:
     - target: {fileID: 380394941180054912, guid: 6f9426b7bba432d4dab6a0c7288e825d, type: 3}
+      propertyPath: m_MinValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 380394941180054912, guid: 6f9426b7bba432d4dab6a0c7288e825d, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2602240730774612945}
@@ -4374,6 +4378,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1419358686443713061, guid: 6f9426b7bba432d4dab6a0c7288e825d, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2629737418163418289, guid: 6f9426b7bba432d4dab6a0c7288e825d, type: 3}
+      propertyPath: m_MinValue
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2629737418163418289, guid: 6f9426b7bba432d4dab6a0c7288e825d, type: 3}
@@ -13938,7 +13946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5359729352910391391
 RectTransform:
   m_ObjectHideFlags: 0
