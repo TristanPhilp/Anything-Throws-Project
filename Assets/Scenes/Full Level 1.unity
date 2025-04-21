@@ -19027,6 +19027,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 5ecffba0730db0c4c8a7631c1a038860, type: 3}
     - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: splash
+      value: 
+      objectReference: {fileID: 8300000, guid: d1788ff506da5b9449106447732d0f7a, type: 3}
+    - target: {fileID: 2392922118251396495, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: moveSpeed
       value: 7
       objectReference: {fileID: 0}
@@ -27303,11 +27307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8509ff5e972b02449965fb15815def53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outline: {fileID: 0}
-  interactSound: {fileID: 0}
-  collideSound: {fileID: 0}
-  launchSound: {fileID: 0}
-  pickupScale: 0
+  outline: {fileID: 5453201853907192218}
+  interactSound: {fileID: 8300000, guid: e67d65b3a82bb634f9b8f046867069a1, type: 3}
+  collideSound: {fileID: 8300000, guid: 74d0fdee461431740bb50ee814ba9ccf, type: 3}
+  launchSound: {fileID: 8300000, guid: 8a2c193c23aad8742a64e1519d3110bf, type: 3}
+  pickupScale: 0.5
 --- !u!1001 &5804542324741939127
 PrefabInstance:
   m_ObjectHideFlags: 0
