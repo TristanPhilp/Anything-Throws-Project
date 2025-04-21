@@ -16220,6 +16220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stall_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 6224067649196891389, guid: f5e21357cb5bb88439c7a0ab3318797a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
