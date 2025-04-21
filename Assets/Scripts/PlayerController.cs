@@ -27,7 +27,40 @@ public class PlayerController : MonoBehaviour
     Vector3 moveValue;
     float x_rot;
 
+    bool playerFSPUpdated = false;
+    public Vector3 playerFailSafePosition;
+    public bool warped = false;
+    float TPtillUltraFailSafe = 30; //If the player is getting teleported constantly before the FSP can be updated.
+    //Referred to in short as playerFSP.
+
     Rigidbody m_Rigidbody;
+
+
+
+    void updatePlayerFSP()
+    {
+        playerFailSafePosition = new Vector3(transform.position.x, 40.1f, transform.position.z);
+        playerFSPUpdated = false;
+        TPtillUltraFailSafe = 30;
+    }
+    void warpPlayer()
+    {
+        
+        if (TPtillUltraFailSafe > 0)
+        {
+            
+            transform.position = playerFailSafePosition;
+            TPtillUltraFailSafe -= 10;
+            warped = false;
+        }
+        if (TPtillUltraFailSafe <= 0)
+        {
+            playerFailSafePosition = new Vector3(195.0f, 37.0f, 152.0f);
+            transform.position = new Vector3(195.0f, 37.0f, 152.0f);
+            warped = false;
+
+        }
+    }
 
     //float maxLook;
     //float minLook;
@@ -38,6 +71,8 @@ public class PlayerController : MonoBehaviour
         //currently unused.
         //maxLook = 90;
         //minLook = -90;
+
+        playerFailSafePosition = transform.position;
 
         lookAction = InputSystem.actions.FindAction("Look");
         moveAction = InputSystem.actions.FindAction("Move");
@@ -79,6 +114,25 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (playerFSPUpdated == false)
+        {
+            Invoke("updatePlayerFSP", 10f);
+            playerFSPUpdated = true;
+        }
+
+        if (transform.position.y < 26)
+        {
+            if (warped == false)
+            {
+                Invoke("warpPlayer", 0.1f);
+                warped = true;
+            }
+
+        }
+
+
+
+
         isSprint = sprintAction.IsPressed() ?  1 : 0;
 
         //Movement code. Jank af but I've been at this for 5 hours and no longer care.
@@ -90,6 +144,12 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+
+        
+
+        
+
+
         //Checks if currently moving or not
         if ((moveValue.x != 0) || (moveValue.z != 0))
         {
