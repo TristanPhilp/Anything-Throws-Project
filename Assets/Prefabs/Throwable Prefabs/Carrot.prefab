@@ -338,5 +338,5 @@ MonoBehaviour:
   outline: {fileID: 5362144238278691061}
   interactSound: {fileID: 8300000, guid: 372965ff4609dd845bb716836a66cdae, type: 3}
   collideSound: {fileID: 8300000, guid: e6709333a63a4a648aafcc3f9cb47e13, type: 3}
-  launchSound: {fileID: 8300000, guid: 0d6177762887d9e488d9a1bda99a489c, type: 3}
+  launchSound: {fileID: 8300000, guid: e6709333a63a4a648aafcc3f9cb47e13, type: 3}
   pickupScale: 0.6

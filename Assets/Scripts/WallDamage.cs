@@ -38,7 +38,7 @@ public class WallDamage : MonoBehaviour
 
         }
 
-        if (wallHealth <= 0)
+        if (wallHealth == 0)
         {
             Destroy(gameObject.GetComponent<BoxCollider>()); //Destroys the object hitbox.
 
@@ -46,6 +46,10 @@ public class WallDamage : MonoBehaviour
             Destroy(gameObject, wallDestructTime); //Destroys our wall.
             Debug.Log("GUP!"); //GUP!!
 
+        }
+        if(wallHealth < 0)
+        {
+            wallHealth = 0;
         }
         
     }
@@ -65,9 +69,21 @@ public class WallDamage : MonoBehaviour
         if (other.gameObject.name != "Player")
         {
             Destroy(other.gameObject, objectBreakTime);
-            wallHealth = wallHealth - 1;
-
             ParticleSystem ps = GetComponent<ParticleSystem>();
+            switch (other.gameObject.name) {
+                case "Bush":
+                    wallHealth = wallHealth - 0.5f;
+                    break;
+                case "Tree":
+                    wallHealth = wallHealth - 2.0f;
+                    break;
+                default:
+                    wallHealth = wallHealth - 1.0f;
+                    break;
+
+            }
+
+            
 
 
             ps.Play();
@@ -78,7 +94,15 @@ public class WallDamage : MonoBehaviour
                     effectPlayer.clip = largeDamageSound;
                     effectPlayer.Play();
                     break;
+                case 1.5f:
+                    effectPlayer.clip = largeDamageSound;
+                    effectPlayer.Play();
+                    break;
                 case 2:
+                    effectPlayer.clip = mediumDamageSound;
+                    effectPlayer.Play();
+                    break;
+                case 2.5f:
                     effectPlayer.clip = mediumDamageSound;
                     effectPlayer.Play();
                     break;
@@ -86,7 +110,15 @@ public class WallDamage : MonoBehaviour
                     effectPlayer.clip = regularDamageSound;
                     effectPlayer.Play();
                     break;
+                case 3.5f:
+                    effectPlayer.clip = regularDamageSound;
+                    effectPlayer.Play();
+                    break;
                 case 4:
+                    effectPlayer.clip = smallDamageSound;
+                    effectPlayer.Play();
+                    break;
+                case 4.5f:
                     effectPlayer.clip = smallDamageSound;
                     effectPlayer.Play();
                     break;
