@@ -709,6 +709,10 @@ PrefabInstance:
       propertyPath: horizSensitivity
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2885239458552398612, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
+      propertyPath: interactDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2886915725873657129, guid: a1eed64f69f5fe94999f34fc17d3882a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15
