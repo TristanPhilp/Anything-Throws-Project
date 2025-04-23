@@ -31,11 +31,14 @@ public class TrebuchetController : MonoBehaviour
     {
         //if (atRest == false)
         //{
-            //if there's a throwable in the zone, then add velocity to it and forget the throwable
+        //if there's a throwable in the zone, then add velocity to it and forget the throwable
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
+        {
             Debug.Log("Launching");
             animator.Play("Fling");
             audioPlayer.clip = launchSound;
             audioPlayer.Play();
+        }
             //atRest = true;
         //}
         //else
