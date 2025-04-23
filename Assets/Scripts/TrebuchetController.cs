@@ -21,7 +21,7 @@ public class TrebuchetController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        atRest = false;
+        //atRest = false;
         audioPlayer = GetComponent<AudioSource>();
     }
 
@@ -29,22 +29,22 @@ public class TrebuchetController : MonoBehaviour
     //function for throwing
     public void TryLaunch()
     {
-        if (atRest == false)
-        {
+        //if (atRest == false)
+        //{
             //if there's a throwable in the zone, then add velocity to it and forget the throwable
             Debug.Log("Launching");
             animator.Play("Fling");
             audioPlayer.clip = launchSound;
             audioPlayer.Play();
-            atRest = true;
-        }
-        else
-        {
-            animator.Play("Reset");
-            audioPlayer.clip = resetSound;
-            audioPlayer.Play();
-            atRest = false;
-        }
+            //atRest = true;
+        //}
+        //else
+        //{
+            //animator.Play("Reset");
+           // audioPlayer.clip = resetSound;
+            //audioPlayer.Play();
+           //atRest = false;
+        //}
     }
 
     public void Eject()
