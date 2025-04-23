@@ -1,3 +1,4 @@
+using UnityEditor.Overlays;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class ThrowableClass : Interactable
 {
+    static int nextId = 0;
 
     Rigidbody m_Rigidbody;
     Collider m_collider;
@@ -17,9 +19,15 @@ public class ThrowableClass : Interactable
     public float pickupScale;
     private float orginalScale;
 
+    [SerializeField] private int id;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        id = nextId;
+        nextId ++;
+
         isHeld = false;
         m_collider = GetComponent<MeshCollider>();
         m_Rigidbody = GetComponent<Rigidbody>();
