@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+
 
 public class WallDamage : MonoBehaviour
 {
@@ -8,7 +10,7 @@ public class WallDamage : MonoBehaviour
     public float wallDestructTime = 0.5f; //Time that it takes for the wall to POOF
 
     public float summonPrefabTime = 0.01f; //Time that it takes to summon the prefab
-
+    public bool isDead = false; //It wasn't useless.
     public GameObject prefab; //Prefab that gets summoned... please make it only *the wall broken prefab*.. or else the wall will turn into that prefab lol
     
     GameObject collidingObject; //Object that collides with the wall.
@@ -21,7 +23,7 @@ public class WallDamage : MonoBehaviour
     public AudioClip largeDamageSound;
 
     //calls wall destructions and destroys object.
-    void Update()
+    void checkWHealth()
     {
         if (collidingObject != null)
         {
@@ -38,14 +40,15 @@ public class WallDamage : MonoBehaviour
 
         }
 
-        if (wallHealth == 0)
+        if (isDead == false && wallHealth == 0)
         {
             Destroy(gameObject.GetComponent<BoxCollider>()); //Destroys the object hitbox.
 
-            Invoke("makeWall", (wallDestructTime - summonPrefabTime)); //Summons the wall on a delay.
+            StartCoroutine(summonWall (wallDestructTime - summonPrefabTime));
+            
             Destroy(gameObject, wallDestructTime); //Destroys our wall.
             Debug.Log("GUP!"); //GUP!!
-
+            isDead = true;
         }
         if(wallHealth < 0)
         {
@@ -53,78 +56,105 @@ public class WallDamage : MonoBehaviour
         }
         
     }
+    
+    IEnumerator summonWall (float delay)
+    {
 
-    void makeWall()
+        yield return new WaitForSecondsRealtime(delay);
+        MakeWall();
+
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
+    void MakeWall()
     {
         Instantiate(prefab, transform.position, transform.rotation); //Summons prefab on top of the wall.
+    }
+    void applyDamage(Collider other)
+    {
+        switch (other.gameObject.name)
+        {
+            case "Bush":
+                wallHealth = wallHealth - 0.5f;
+                break;
+            case "Tree":
+                wallHealth = wallHealth - 2.0f;
+                break;
+            default:
+                wallHealth = wallHealth - 1.0f;
+                break;
+
+        }
+    }
+    void playSound()
+    {
+        switch (wallHealth)
+        {
+            case 1:
+                effectPlayer.clip = largeDamageSound;
+                effectPlayer.Play();
+                break;
+            case 1.5f:
+                effectPlayer.clip = largeDamageSound;
+                effectPlayer.Play();
+                break;
+            case 2:
+                effectPlayer.clip = mediumDamageSound;
+                effectPlayer.Play();
+                break;
+            case 2.5f:
+                effectPlayer.clip = mediumDamageSound;
+                effectPlayer.Play();
+                break;
+            case 3:
+                effectPlayer.clip = regularDamageSound;
+                effectPlayer.Play();
+                break;
+            case 3.5f:
+                effectPlayer.clip = regularDamageSound;
+                effectPlayer.Play();
+                break;
+            case 4:
+                effectPlayer.clip = smallDamageSound;
+                effectPlayer.Play();
+                break;
+            case 4.5f:
+                effectPlayer.clip = smallDamageSound;
+                effectPlayer.Play();
+                break;
+        }
+
     }
 
     //checks to see if object hits wall.
     void OnTriggerEnter(Collider other)
     {
+
         Debug.Log("A object entered the wall's hitbox.");
 
+        
         collidingObject = other.gameObject;
 
         if (other.gameObject.name != "Player")
         {
             Destroy(other.gameObject, objectBreakTime);
             ParticleSystem ps = GetComponent<ParticleSystem>();
-            switch (other.gameObject.name) {
-                case "Bush":
-                    wallHealth = wallHealth - 0.5f;
-                    break;
-                case "Tree":
-                    wallHealth = wallHealth - 2.0f;
-                    break;
-                default:
-                    wallHealth = wallHealth - 1.0f;
-                    break;
-
-            }
-
             
 
+            applyDamage(other);
+            playSound();
 
             ps.Play();
             //In a larger level, this would be a randomly selected sound effect, or use if else for ranges. But for now, this serves the purpose better
-            switch (wallHealth)
-            {
-                case 1:
-                    effectPlayer.clip = largeDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 1.5f:
-                    effectPlayer.clip = largeDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 2:
-                    effectPlayer.clip = mediumDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 2.5f:
-                    effectPlayer.clip = mediumDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 3:
-                    effectPlayer.clip = regularDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 3.5f:
-                    effectPlayer.clip = regularDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 4:
-                    effectPlayer.clip = smallDamageSound;
-                    effectPlayer.Play();
-                    break;
-                case 4.5f:
-                    effectPlayer.clip = smallDamageSound;
-                    effectPlayer.Play();
-                    break;
-            }
-
+            
         }
+
+        checkWHealth();
+
     }
 
 
