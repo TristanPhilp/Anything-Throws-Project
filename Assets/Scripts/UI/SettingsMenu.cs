@@ -13,9 +13,14 @@ public class SettingsMenu : MonoBehaviour
     public PlayerController playerController;
     public GameObject PauseMenu;
     public GameObject OptionsMenu;
+    public GameObject ControlsMenu;
     public bool isPauseMenuOpen = false;
+    public bool isControlsVisible = true;
+
     //public bool isMainMenu = true;
+
     InputAction pauseToggle;
+    InputAction controlsToggle;
     public Slider SliderY;
     public Slider SliderX;
     public Slider VolumeSlider;
@@ -28,6 +33,7 @@ public class SettingsMenu : MonoBehaviour
     private void Start()
     {
         pauseToggle = InputSystem.actions.FindAction("Pause");
+        controlsToggle = InputSystem.actions.FindAction("ControlsToggle");
         Cursor.lockState = CursorLockMode.Locked;
 
         resolutions = Screen.resolutions;
@@ -64,7 +70,7 @@ public class SettingsMenu : MonoBehaviour
     //updates pause menu
     public void Update()
     {
-        
+        SetControlScreen();
 
         if (pauseToggle.WasPressedThisFrame())
         {
@@ -75,7 +81,6 @@ public class SettingsMenu : MonoBehaviour
                 
                 Pause();
                 Cursor.lockState = CursorLockMode.None;
-
             }
             else
             {
@@ -83,9 +88,12 @@ public class SettingsMenu : MonoBehaviour
                 
                 Resume();
                 Cursor.lockState = CursorLockMode.Locked;
+               
             }
 
         }
+
+        
     }
 
     //pauses game
@@ -173,5 +181,20 @@ public class SettingsMenu : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolutions[resolutionIndex].width, resolutions[resolutionIndex].height, Screen.fullScreen);
+    }
+
+    //sets screen to false
+    public void SetControlScreen()
+    {
+        if (controlsToggle.WasPressedThisFrame() && isControlsVisible == true)
+        {
+                ControlsMenu.SetActive(true);
+                isControlsVisible = false;
+        }   
+        else if (controlsToggle.WasPressedThisFrame() && isControlsVisible == false)
+        {
+                ControlsMenu.SetActive(false);
+                isControlsVisible = true;                           
+        }
     }
 }
