@@ -15,7 +15,7 @@ public class SettingsMenu : MonoBehaviour
     public GameObject OptionsMenu;
     public GameObject ControlsMenu;
     public bool isPauseMenuOpen = false;
-    public bool isControlsVisible = true;
+    public bool isControlsVisible = false;
 
     //public bool isMainMenu = true;
 
@@ -186,15 +186,15 @@ public class SettingsMenu : MonoBehaviour
     //sets screen to false
     public void SetControlScreen()
     {
-        if (controlsToggle.WasPressedThisFrame() && isControlsVisible == true)
+        if (controlsToggle.WasPressedThisFrame() && isControlsVisible == false)
         {
                 ControlsMenu.SetActive(true);
-                isControlsVisible = false;
+                isControlsVisible = true;
         }   
-        else if (controlsToggle.WasPressedThisFrame() && isControlsVisible == false)
+        else if (controlsToggle.WasPressedThisFrame() && isControlsVisible == true)
         {
                 ControlsMenu.SetActive(false);
-                isControlsVisible = true;                           
+                isControlsVisible = false;                           
         }
     }
 }
