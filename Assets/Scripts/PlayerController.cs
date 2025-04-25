@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     void updatePlayerFSP()
     {
-        playerFailSafePosition = new Vector3(transform.position.x, 40.1f, transform.position.z);
+        playerFailSafePosition = new Vector3(195.0f, 37.0f, 152.0f);
         playerFSPUpdated = false;
         TPtillUltraFailSafe = 30;
     }
