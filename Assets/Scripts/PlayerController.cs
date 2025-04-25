@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     Vector3 moveValue;
     float x_rot;
 
-    bool playerFSPUpdated = false;
+    bool playerFailsafePositionUpdated = false;
     public Vector3 playerFailSafePosition;
     public bool warped = false;
     float TPtillUltraFailSafe = 30; //If the player is getting teleported constantly before the FSP can be updated.
@@ -37,10 +37,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-    void updatePlayerFSP()
+    void updatePlayerFailsafePosition()
     {
-        playerFailSafePosition = new Vector3(transform.position.x, 40.1f, transform.position.z);
-        playerFSPUpdated = false;
+        playerFailSafePosition = new Vector3(195.0f, 37.0f, 152.0f);
+        playerFailsafePositionUpdated = false;
         TPtillUltraFailSafe = 30;
     }
     void warpPlayer()
@@ -114,10 +114,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (playerFSPUpdated == false)
+        if (playerFailsafePositionUpdated == false)
         {
-            Invoke("updatePlayerFSP", 10f);
-            playerFSPUpdated = true;
+            Invoke("updatePlayerFailsafePosition", 10f);
+            playerFailsafePositionUpdated = true;
         }
 
         if (transform.position.y < 26)
