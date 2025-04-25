@@ -7,7 +7,8 @@ public class Save : MonoBehaviour
     public void SaveScene()
     {
 
-        // PlayerPrefs.SetInt("SceneSaved", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("SceneSaved", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.Save();
         SaveSystem.SaveScene(SceneManager.GetSceneByBuildIndex(1));
     }
     

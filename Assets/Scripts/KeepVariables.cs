@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 //get variabales to transfer between classes
 public class KeepVariables : MonoBehaviour
 {
+
     public static float sensY = 25;
 
     public static float sensX = 12.5f;
@@ -13,6 +14,50 @@ public class KeepVariables : MonoBehaviour
     public static float volumeFloat;
 
     public static bool fullScreen;
+
+    public static int fullScreenInt;
+
+    public void SetSensivitiyY()
+    {
+
+        PlayerPrefs.SetFloat("SensitivityY", sensY);
+        Save();
+    }
+
+    public void SetSensivitiyX()
+    {
+
+        PlayerPrefs.SetFloat("SensitivityX", sensX);
+        Save();
+    }
+
+    public void SetVolume()
+    {
+
+        PlayerPrefs.SetFloat("VolumeFloat", volumeFloat);
+        Save();
+    }
+
+    public void SetFullScreen()
+    {
+        if (fullScreen == true)
+        {
+            fullScreenInt = 1;
+        }
+        else
+        {
+            fullScreenInt = 0;
+        }
+            PlayerPrefs.SetInt("Sensitivity", fullScreenInt);
+        Save();
+    }
+
+    public void Save()
+    {
+
+        PlayerPrefs.Save();
+
+    }
 }
 
 public static class SaveSystem {
