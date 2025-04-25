@@ -252,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guidePoint: {fileID: 737631570961137988}
   interactDistance: 3
+  holdDistance: 1.8
 --- !u!1 &4956581541731983258
 GameObject:
   m_ObjectHideFlags: 0
