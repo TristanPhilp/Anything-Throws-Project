@@ -9520,6 +9520,14 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: 4887400191637000682, guid: 73e8ad0157f0c89308bc86d2effb64eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887400191637000682, guid: 73e8ad0157f0c89308bc86d2effb64eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 27.13
+      objectReference: {fileID: 0}
     - target: {fileID: 6270894692328907719, guid: 73e8ad0157f0c89308bc86d2effb64eb, type: 3}
       propertyPath: m_Name
       value: Fishing Area
