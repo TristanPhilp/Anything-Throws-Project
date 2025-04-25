@@ -48,7 +48,7 @@ public class KeepVariables : MonoBehaviour
         {
             fullScreenInt = 0;
         }
-            PlayerPrefs.SetInt("Sensitivity", fullScreenInt);
+            PlayerPrefs.SetInt("FullScreenInt", fullScreenInt);
         Save();
     }
 
@@ -60,6 +60,7 @@ public class KeepVariables : MonoBehaviour
     }
 }
 
+//save scene to a file *still in development*
 public static class SaveSystem {
 
     public static void SaveScene(Scene scene)

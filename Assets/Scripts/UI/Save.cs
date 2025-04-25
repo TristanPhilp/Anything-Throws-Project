@@ -3,13 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class Save : MonoBehaviour
 {
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //sees if the scene is saved
     public void SaveScene()
     {
 
         PlayerPrefs.SetInt("SceneSaved", SceneManager.GetActiveScene().buildIndex);
         PlayerPrefs.Save();
-        SaveSystem.SaveScene(SceneManager.GetSceneByBuildIndex(1));
+       // SaveSystem.SaveScene(SceneManager.GetSceneByBuildIndex(1));
     }
     
     public void LoadScene()

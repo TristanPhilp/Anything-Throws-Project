@@ -16,6 +16,7 @@ public class SettingsMenu : MonoBehaviour
     public GameObject ControlsMenu;
     public bool isPauseMenuOpen = false;
     public bool isControlsVisible = false;
+    //public bool isControlsSwitchable = true;
 
     //public bool isMainMenu = true;
 
@@ -72,6 +73,7 @@ public class SettingsMenu : MonoBehaviour
     {
         SetControlScreen();
 
+
         if (pauseToggle.WasPressedThisFrame())
         {
 
@@ -88,11 +90,9 @@ public class SettingsMenu : MonoBehaviour
                 
                 Resume();
                 Cursor.lockState = CursorLockMode.Locked;
-               
             }
 
         }
-
         
     }
 
