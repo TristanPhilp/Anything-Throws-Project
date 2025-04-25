@@ -253,7 +253,8 @@ MonoBehaviour:
   interactSound: {fileID: 8300000, guid: 27a579f336645ee49b51cc1fe8ff4a10, type: 3}
   collideSound: {fileID: 8300000, guid: 6c674a883e4af304d9bd2aeccb64d95e, type: 3}
   launchSound: {fileID: 8300000, guid: 4bc48ffad1c251a4ab687130fdee72b7, type: 3}
-  pickupScale: 0.5
+  pickupScale: 0.25
+  id: 0
 --- !u!1 &5877287158968297471
 GameObject:
   m_ObjectHideFlags: 0
