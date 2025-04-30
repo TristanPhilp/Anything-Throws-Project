@@ -155,7 +155,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4125471728267972529, guid: 0e8ebeb98c74f5242a9583cbe5c66c2f, type: 3}
+  - {fileID: 2100000, guid: 2996dfa111fc9b34d9141508e864f4b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -340,3 +340,4 @@ MonoBehaviour:
   collideSound: {fileID: 8300000, guid: e6709333a63a4a648aafcc3f9cb47e13, type: 3}
   launchSound: {fileID: 8300000, guid: e6709333a63a4a648aafcc3f9cb47e13, type: 3}
   pickupScale: 0.6
+  id: 0
