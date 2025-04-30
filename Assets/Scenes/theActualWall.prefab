@@ -70,8 +70,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4125471728267972529, guid: 2951d71dba60caa41bda2313ab87706d, type: 3}
-  - {fileID: -4125471728267972529, guid: 2951d71dba60caa41bda2313ab87706d, type: 3}
+  - {fileID: 2100000, guid: 2996dfa111fc9b34d9141508e864f4b0, type: 2}
+  - {fileID: 2100000, guid: 2996dfa111fc9b34d9141508e864f4b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,6 +152,7 @@ MonoBehaviour:
   objectBreakTime: 0.1
   wallDestructTime: 0.5
   summonPrefabTime: 0.01
+  isDead: 0
   prefab: {fileID: 6760111799759093935, guid: add2d06a0ceb6ce458d81585c545ca83, type: 3}
   effectPlayer: {fileID: 1914468006573896224}
   smallDamageSound: {fileID: 8300000, guid: 42e119c3b32a60c4a89a2089b069962c, type: 3}

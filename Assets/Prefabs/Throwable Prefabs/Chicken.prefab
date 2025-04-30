@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7573661587976805087, guid: bb17482ae6d86134bb31a0536379c4c2, type: 3}
+  - {fileID: 2100000, guid: 2996dfa111fc9b34d9141508e864f4b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -254,6 +254,7 @@ MonoBehaviour:
   collideSound: {fileID: 8300000, guid: 86148043528a2134ca6d922fbe85f4d9, type: 3}
   launchSound: {fileID: 8300000, guid: 8eb6807f26b385b4eac1a395f2de7e1c, type: 3}
   pickupScale: 1.5
+  id: 0
 --- !u!1 &7971388210445742455
 GameObject:
   m_ObjectHideFlags: 0
