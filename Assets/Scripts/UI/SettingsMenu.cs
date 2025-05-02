@@ -16,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
     public GameObject ControlsMenu;
     public bool isPauseMenuOpen = false;
     public bool isControlsVisible = false;
-    //public bool isControlsSwitchable = true;
+    public bool isControlsSwitchable = true;
 
     //public bool isMainMenu = true;
 
@@ -147,7 +147,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetFullScreen()
     {
-        if (KeepVariables.fullScreen == true)
+        if (KeepVariables.fullScreenInt == 1)
             FullScreenToggle.isOn = true;
         else
             FullScreenToggle.isOn = false;

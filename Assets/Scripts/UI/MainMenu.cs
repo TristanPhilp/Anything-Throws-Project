@@ -116,7 +116,7 @@ public class MainMenu : MonoBehaviour
 
     public void SetFullScreen()
     {
-        if (KeepVariables.fullScreen == true)
+        if (KeepVariables.fullScreenInt == 1)
             FullScreenToggle.isOn = true;
         else
             FullScreenToggle.isOn = false;

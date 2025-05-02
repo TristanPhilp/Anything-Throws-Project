@@ -49,6 +49,7 @@ public class KeepVariables : MonoBehaviour
             fullScreenInt = 0;
         }
             PlayerPrefs.SetInt("FullScreenInt", fullScreenInt);
+
         Save();
     }
 
