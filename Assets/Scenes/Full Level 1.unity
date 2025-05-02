@@ -30857,8 +30857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -127}
-  m_SizeDelta: {x: 160, y: 150}
+  m_AnchoredPosition: {x: 80, y: -115}
+  m_SizeDelta: {x: 160, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1117908838186936509
 PrefabInstance:
@@ -33931,8 +33931,8 @@ RectTransform:
   m_Children:
   - {fileID: 6669082800759468738}
   - {fileID: 1115819056705652944}
-  - {fileID: 5174042935999167794}
   - {fileID: 4211279248931507951}
+  - {fileID: 5174042935999167794}
   m_Father: {fileID: 483354934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -34904,8 +34904,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 79, y: -254}
-  m_SizeDelta: {x: 160, y: 50}
+  m_AnchoredPosition: {x: 80, y: -217.5}
+  m_SizeDelta: {x: 160, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &4250791377469576611
 PrefabInstance:
@@ -35005,7 +35005,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: The king is an ass, go destroy his wall. A trebuchet is located in front
-    of the wall near the river.
+    of the wall near the river. Pick up and throw items around the level.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -36094,8 +36094,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 78.999985, y: -354}
-  m_SizeDelta: {x: 160, y: 150}
+  m_AnchoredPosition: {x: 79.5, y: -335}
+  m_SizeDelta: {x: 159, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &5205910412559975088
 PrefabInstance:
@@ -39036,8 +39036,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 80, y: -27}
-  m_SizeDelta: {x: 160, y: 50}
+  m_AnchoredPosition: {x: 80, y: -15}
+  m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6690295240148212091
 MeshRenderer:
