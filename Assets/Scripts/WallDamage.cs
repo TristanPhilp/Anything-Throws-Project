@@ -40,6 +40,10 @@ public class WallDamage : MonoBehaviour
 
         }
 
+        if(wallHealth < 0)
+        {
+            wallHealth = 0;
+        }
         if (isDead == false && wallHealth == 0)
         {
             Destroy(gameObject.GetComponent<BoxCollider>()); //Destroys the object hitbox.
@@ -49,10 +53,6 @@ public class WallDamage : MonoBehaviour
             Destroy(gameObject, wallDestructTime); //Destroys our wall.
             Debug.Log("GUP!"); //GUP!!
             isDead = true;
-        }
-        if(wallHealth < 0)
-        {
-            wallHealth = 0;
         }
         
     }
