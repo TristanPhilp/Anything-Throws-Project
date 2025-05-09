@@ -21,7 +21,7 @@ public class DisplayWallhealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentHealth = (int)sceneWallDamage.wallHealth; //update current health
+        currentHealth = (float)sceneWallDamage.wallHealth; //update current health
         float ratio = (float)currentHealth / (float)maxHealth; //create a ratio to scale the health bar by.
         healthBarGameObject.transform.localScale = Vector3.Lerp(healthBarGameObject.transform.localScale, new Vector3(ratio, 1, 1), 0.02f); //scale the health bar's x axis using a lerp. Lerping is done to make it look smooth.
     }
