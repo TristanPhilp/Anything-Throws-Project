@@ -1,44 +1,47 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
-
-[RequireComponent(typeof(Interactable))]
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Collider))]
-public class ThrowableClass : MonoBehaviour
+[RequireComponent(typeof(AudioSource))]
+public class ThrowableClass : Interactable
 {
-    public GameObject player;
-    public Joint guidePoint;
-    Collider playerCollider;
+    static int nextId = 0;
+
     Rigidbody m_Rigidbody;
-    Collider m_Collider;
-    Renderer rend;
+    Collider m_collider;
+
+    AudioSource audioPlayer;
     bool isHeld;
+
+    public AudioClip collideSound;
+    public AudioClip launchSound;
+    public float pickupScale;
+    private float orginalScale;
+
+    [SerializeField] private int id;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerCollider = player.GetComponent<Collider>();
-        guidePoint = player.GetComponentInChildren<Camera>().GetComponentInChildren<Joint>();
+
+        id = nextId;
+        nextId ++;
+
         isHeld = false;
+        m_collider = GetComponent<MeshCollider>();
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Collider = GetComponent<Collider> ();
-        rend = GetComponent<Renderer>();
+        audioPlayer = GetComponent<AudioSource>();
+        m_Rigidbody.Sleep();
+        orginalScale = transform.localScale.x;
     }
 
-    // Update is called once per frame
-    void Update()
+    //interactation code
+    public override int OnInteract()
     {
-    }
+        m_Rigidbody.WakeUp();
+        audioPlayer.clip = interactSound;
+        audioPlayer.Play();
 
-
-    public void Hover()
-    {
-        ColorShift(Color.white);
-    }
-    public void Select()
-    {
         //activate shader for now
         Debug.Log("Throwable Object Selected");
         if (!isHeld)
@@ -49,33 +52,33 @@ public class ThrowableClass : MonoBehaviour
         {
             Drop();
         }
+        return 1;
     }
 
+    //returns hold object
     void Hold()
     {
         isHeld = true;
-        //m_Rigidbody.isKinematic = true;
-        guidePoint.connectedBody = m_Rigidbody;
-        m_Rigidbody.useGravity = false;
-        //m_Collider.excludeLayers = 1 << LayerMask.NameToLayer("Player");
+        transform.localScale = new Vector3(pickupScale, pickupScale, pickupScale);
         gameObject.layer = LayerMask.NameToLayer("HeldObject");
-        ColorShift(Color.red);
     }
-
+    //returns drop object
     void Drop()
     {
         isHeld = false;
-        //m_Rigidbody.isKinematic = false;
-        guidePoint.connectedBody = null;
-        m_Rigidbody.useGravity = true;
-        //m_Collider.excludeLayers = 0;
         gameObject.layer = LayerMask.NameToLayer("Default");
-        ColorShift(Color.blue);
     }
 
-    //Interacts with the current material to set the material color to the input color.
-    public void ColorShift(Color color)
+    public void OnLaunch()
     {
-        rend.material.color = color;
+        transform.localScale = new Vector3(orginalScale, orginalScale, orginalScale);
+        audioPlayer.clip = launchSound;
+        audioPlayer.Play();
+    }
+
+    public void OnWallHit()
+    {
+        audioPlayer.clip = collideSound;
+        audioPlayer.Play();
     }
 }

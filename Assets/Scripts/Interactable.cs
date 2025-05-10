@@ -1,33 +1,35 @@
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 
 
 [RequireComponent(typeof(Collider))]
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-    [Header("Interactable Functions")] 
-    public UnityEvent onHover;
-    public UnityEvent onInteract;
+    public GameObject outline;
+    public AudioClip interactSound;
+    Collider m_Collider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        m_Collider = GetComponent<Collider>();
     }
 
     //These functions may not be needed, but oh well
     //All these do is allow interaction to be implemented on any object without needing to tweak the player interact code.
-    public void OnHover()
+    public virtual void OnHover()
     {
-        onHover.Invoke();
+        outline.SetActive(true);
+        Debug.Log("This item does not override OnHover");
     }
-    public void OnInteract()
+    public virtual void OffHover()
     {
-       // onInteract.Invoke();
+        outline.SetActive(false);
+        Debug.Log("This item does not override OffHover");
+    }
+    public virtual int OnInteract()
+    {
+        Debug.Log("This item does not have a definition for OnInteract");
+        return 0;
     }
 }

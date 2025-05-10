@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 
 //[RequireComponent(typeof(PlayerController))]
@@ -7,54 +8,74 @@ public class PlayerInteract : MonoBehaviour
 {
     InputAction interactAction;
     public GameObject guidePoint;
+    Joint guideHinge;
 
     public float interactDistance;
-    GameObject seenObject;
+    public float holdDistance;
+    Interactable seenObject;
+    private bool holding = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interactAction = InputSystem.actions.FindAction("Interact");
-        guidePoint.transform.position = new Vector3(0, 0, interactDistance);
+        guidePoint.transform.localPosition = new Vector3(0, 0, holdDistance);
+        guideHinge = guidePoint.GetComponent<Joint>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (interactAction.WasPressedThisFrame())
-        {
-            if (seenObject != null && seenObject.TryGetComponent<Interactable>(out Interactable interactable))
-            {
-                //OBJECT INTERACTION CODE HERE
-                interactable.OnInteract();
-            }
-        }
-
         RaycastHit hit;
 
         Vector3 forward = transform.TransformDirection(Vector3.forward) * interactDistance;
         Ray ray = new Ray(transform.position, forward);
         Debug.DrawRay(transform.position, forward, Color.red);
-        if (Physics.Raycast(ray, out hit, interactDistance))
+
+        //
+        if (holding == false)
         {
-            if (hit.collider.gameObject != seenObject)
+            if (Physics.Raycast(ray, out hit, interactDistance))
             {
-                seenObject = hit.collider.gameObject;
-                if (hit.collider.gameObject.TryGetComponent<Interactable>(out Interactable interact))
+                if (hit.collider.gameObject != seenObject)
                 {
-                    Debug.Log("Looking At Interactable");
-                    interact.OnHover();
-                }
-                else
-                {
-                    Debug.Log("Looking At Something");
+                    if (hit.collider.gameObject.TryGetComponent<Interactable>(out Interactable interact))
+                    {
+                        seenObject = interact;
+                        seenObject.OnHover();
+                    }
+                    else
+                    {
+                        Debug.Log("Looking At Something");
+                    }
                 }
             }
 
+            else if (seenObject != null)
+            {
+                seenObject.OffHover();
+                seenObject = null;
+            }
+        }
 
-        }
-        else
+        //
+        if (interactAction.WasPressedThisFrame() && seenObject != null)
         {
-            seenObject = null;
+            if (seenObject.OnInteract() == 1)
+            {
+                switch (holding)
+                {
+                    case true:
+                        holding = false;
+                        guideHinge.connectedBody = null;
+                        break;
+                    case false:
+                        holding = true;
+                        guideHinge.connectedBody = seenObject.gameObject.GetComponent<Rigidbody>();
+                        break;
+                }
+            }
         }
+
+        
     }
 }

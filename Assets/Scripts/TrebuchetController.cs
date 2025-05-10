@@ -1,50 +1,72 @@
+using System;
+using System.Xml.Serialization;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class TrebuchetController : MonoBehaviour
 {
     [Header("Trebuchet Components")]
-    public GameObject arm;
-    public Quaternion primedPos;
-    public Quaternion restPos;
     public bool atRest;
-
+    public Animator animator;
 
     [Header("Objects launch")]
     public GameObject launchable;
-    public GameObject loadArea;
-    public Collider loadCollider;
+    public Vector3 launchVelocity;
 
+    //Used to play the launching sound
+    public AudioSource audioPlayer;
+    public AudioClip launchSound;
+    public AudioClip resetSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        loadCollider = loadArea.GetComponent<Collider>();
-        primedPos = Quaternion.Euler(0, 0, -30);
-        restPos = Quaternion.Euler(0, 0, 90);
-        atRest = false;
+        //atRest = false;
+        audioPlayer = GetComponent<AudioSource>();
     }
+
 
     //function for throwing
     public void TryLaunch()
     {
-        if (atRest == false)
+        //if (atRest == false)
+        //{
+        //if there's a throwable in the zone, then add velocity to it and forget the throwable
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Ready"))
         {
-            arm.transform.rotation = restPos;
+            Debug.Log("Launching");
+            animator.Play("Fling");
+            audioPlayer.clip = launchSound;
+            audioPlayer.Play();
+        }
+            //atRest = true;
+        //}
+        //else
+        //{
+            //animator.Play("Reset");
+           // audioPlayer.clip = resetSound;
+            //audioPlayer.Play();
+           //atRest = false;
+        //}
+    }
 
-            //if there's a throwable in the zone, then add velocity to it and forget the throwable
-            if (launchable != null) 
+    public void Eject()
+    {
+        if (launchable != null) {
+
+            launchable.layer = LayerMask.NameToLayer("Flying");
+            Rigidbody launchableRigidbody = launchable.GetComponent<Rigidbody>();
+            Debug.Log("Throwable Ejected");
+            if (launchable != null)
             {
-                launchable.GetComponent<Rigidbody>().linearVelocity = new Vector3(4, 6, 0);
+                launchable.transform.SetParent(null);
+                launchableRigidbody.isKinematic = false;
+
+                launchableRigidbody.linearVelocity = launchVelocity;
+
+                launchable.GetComponent<ThrowableClass>().OnLaunch();
                 launchable = null;
             }
-            
-            atRest = true;
-        }
-        else
-        {
-            arm.transform.rotation = primedPos;
-            atRest = false;
         }
     }
 }

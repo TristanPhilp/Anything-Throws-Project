@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: faa4b716771ac3745b85a103443eba63
+  - enabled: 1
+    path: Assets/Scenes/Full Level 1.unity
+    guid: 8338e4de8e857a14886fdb913fdf8f26
+  - enabled: 1
+    path: Assets/Scenes/StartMenuSave.unity
+    guid: 52a2805b96075aa49aa626b8d3a078cb
+  - enabled: 0
+    path: Assets/Scenes/Level 1 Development/Town Development.unity
+    guid: 949e815de5792314c9771f83780476bf
+  - enabled: 0
     path: Assets/Scenes/Player Testing Area.unity
     guid: c79e5100e5bb88f4da7baf704694fd54
   m_configObjects:
